@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>images/gardina_intro_video.mp4</file>
+        <file>images/button_ozone_highlight_bg.png</file>
+        <file>images/button_ozone_bg_gray.png</file>
+        <file>images/button_ozone_bg.png</file>
+        <file>images/button_oxygen_highlight_bg.png</file>
+        <file>images/button_oxygen_bg_gray.png</file>
+        <file>images/button_oxygen_bg.png</file>
+        <file>images/gardina_main_bg.png</file>
+    </qresource>
+</RCC>
