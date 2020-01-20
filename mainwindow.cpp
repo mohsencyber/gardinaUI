@@ -19,6 +19,35 @@ MainWindow::MainWindow(QWidget *parent)
     addRoot("MYFamily","MyTreeFamily");
     ui->progressBar->setValue(0);
     connect(ui->myHSlider,SIGNAL(valueChanged(int)),ui->progressBar,SLOT(setValue(int)));
+        //--------------------------
+            this->setWindowTitle("gardina");
+
+    ButtonHoverWatcher * watcheroxygen = new ButtonHoverWatcher(this);
+    ButtonHoverWatcher * watcherozone = new ButtonHoverWatcher(this);
+    ButtonHoverWatcher * watchervacuum = new ButtonHoverWatcher(this);
+    watcherozone->setIconSize(QSize(110,90));
+    watcheroxygen->setIconSize(QSize(110,90));
+    watchervacuum->setIconSize(QSize(110,90));
+    watcherozone->setIcon(":/images/button_ozone_highlight_bg.png",":/images/button_ozone_bg.png");
+    watcheroxygen->setIcon(":/images/button_oxygen_highlight_bg.png",":/images/button_oxygen_bg.png");
+    watchervacuum->setIcon(":/images/button_vacuum_highlight_bg.png",":/images/button_vacuum_bg.png");
+    ui->Oxygen_button->installEventFilter(watcheroxygen);
+    ui->Ozone_button->installEventFilter(watcherozone);
+    ui->vacuum_button->installEventFilter(watchervacuum);
+    ui->Ozone_button->setFlat(false);
+    ui->Oxygen_button->setFlat(false);
+    ui->vacuum_button->setFlat(false);
+    //ui->Ozone_button->setStyleSheet("border-image:url(:/images/button_ozone_bg.png");
+    //ui->vacuum_button->setStyleSheet("border-image:url(:/images/button_vacuum_bg.png");
+    //ui->Oxygen_button->setStyleSheet("border-image:url(:/images/button_oxygen_bg.png");
+    ui->Ozone_button->setIcon(QIcon(":/images/button_Ozone_bg.png"));
+    ui->Oxygen_button->setIcon(QIcon(":/images/button_Oxygen_bg.png"));
+    ui->vacuum_button->setIcon(QIcon(":/images/button_Vacuum_bg.png"));
+    this->setStyleSheet( "#MainWindow { "
+                         " border-image: url(:/images/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
+                         "}");
+
+        //--------------------------
     /*
     this->setStyleSheet(
                 "#MainWindow { "
