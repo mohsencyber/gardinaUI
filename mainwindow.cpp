@@ -4,6 +4,8 @@
 #include "buttonhoverwatcher.h"
 #include <QVideoWidget>
 #include <QMediaPlayer>
+#include "framevaccum.h"
+#include "formoxygen.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->Ozone_button->setIcon(QIcon(":/images/button_Ozone_bg.png"));
     ui->Oxygen_button->setIcon(QIcon(":/images/button_Oxygen_bg.png"));
     ui->vacuum_button->setIcon(QIcon(":/images/button_Vacuum_bg.png"));
+
     this->setStyleSheet( "#MainWindow { "
                          " border-image: url(:/images/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
                          "}");
@@ -65,16 +68,23 @@ void MainWindow::on_Ozone_button_clicked()
 
 void MainWindow::on_Oxygen_button_clicked()
 {
-    qmsg.setText("Oxygen form viewed?");
-    qmsg.setIcon(QMessageBox::NoIcon);
-    qmsg.setStandardButtons(QMessageBox::Ok);
-    qmsg.exec();
+    //qmsg.setText("Oxygen form viewed?");
+    //qmsg.setIcon(QMessageBox::NoIcon);
+    //qmsg.setStandardButtons(QMessageBox::Ok);
+    //qmsg.exec();
+    Formoxygen *oxygen = new Formoxygen();
+    oxygen->show();
+
 }
 
 void MainWindow::on_vacuum_button_clicked()
 {
-    qmsg.setText("Vacuum form viewed?");
-    qmsg.setIcon(QMessageBox::NoIcon);
-    qmsg.setStandardButtons(QMessageBox::Ok);
-    qmsg.exec();
+    //qmsg.setText("Vacuum form viewed?");
+    //qmsg.setIcon(QMessageBox::NoIcon);
+    //qmsg.setStandardButtons(QMessageBox::Ok);
+    //qmsg.exec();
+
+
+    Framevaccum *vaccum = new Framevaccum();
+    vaccum->show();
 }

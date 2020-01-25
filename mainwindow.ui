@@ -153,6 +153,22 @@ image: url(:/images/button_vacuum_bg.png);</string>
      </size>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>150</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Power-Off</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -160,7 +176,7 @@ image: url(:/images/button_vacuum_bg.png);</string>
      <x>0</x>
      <y>0</y>
      <width>470</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

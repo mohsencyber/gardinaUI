@@ -29,17 +29,23 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     buttonhoverwatcher.cpp \
-    formmovie.cpp
+    formmovie.cpp \
+    framevaccum.cpp \
+    formoxygen.cpp
 
 HEADERS += \
         mainwindow.h \
     buttonhoverwatcher.h \
     buttonhoverwatcher.h \
-    formmovie.h
+    formmovie.h \
+    framevaccum.h \
+    formoxygen.h
 
 FORMS += \
         mainwindow.ui \
-    formmovie.ui
+    formmovie.ui \
+    framevaccum.ui \
+    formoxygen.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
