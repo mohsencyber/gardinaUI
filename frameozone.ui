@@ -35,9 +35,9 @@
   <widget class="QPushButton" name="ct_button">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>220</x>
      <y>300</y>
-     <width>300</width>
+     <width>380</width>
      <height>90</height>
     </rect>
    </property>
@@ -59,9 +59,9 @@ border-image: url(:/button_ozonemenue_ct_bg.png);
   <widget class="QPushButton" name="general_button">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>220</x>
      <y>180</y>
-     <width>300</width>
+     <width>380</width>
      <height>90</height>
     </rect>
    </property>
@@ -83,9 +83,9 @@ border-image: url(:/button_ozonemenue_general_bg.png);
   <widget class="QPushButton" name="infection_button">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>220</x>
      <y>50</y>
-     <width>300</width>
+     <width>380</width>
      <height>90</height>
     </rect>
    </property>

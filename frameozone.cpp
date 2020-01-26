@@ -1,5 +1,6 @@
 #include "frameozone.h"
 #include "ui_frameozone.h"
+#include "ozonegeneral.h"
 
 FrameOzone::FrameOzone(QWidget *parent) :
     QFrame(parent),
@@ -17,4 +18,10 @@ FrameOzone::~FrameOzone()
 void FrameOzone::on_backButton_clicked()
 {
     close();
+}
+
+void FrameOzone::on_general_button_clicked()
+{
+    OzoneGeneral *ozoneGeneral = new OzoneGeneral();
+    ozoneGeneral->showFullScreen();
 }

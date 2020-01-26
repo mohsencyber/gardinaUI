@@ -10,6 +10,7 @@ FormOxygen::FormOxygen(QWidget *parent) :
     ui->setupUi(this);
 
     this->setStyleSheet( " #FormOxygen { border:none; border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;}");
+
 }
 
 FormOxygen::~FormOxygen()

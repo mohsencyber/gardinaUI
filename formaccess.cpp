@@ -10,6 +10,8 @@ formAccess::formAccess(QWidget *parent):
     ui(new Ui::formAccess)
 {
     ui->setupUi(this);
+
+    ui->media_button->setDisabled(true);
     this->setStyleSheet( " #formAccess { "
                          " border:none;border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
                          "}");

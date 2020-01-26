@@ -24,7 +24,8 @@ SOURCES += \
     framecontact.cpp \
     frameozone.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    ozonegeneral.cpp
 
 HEADERS += \
     buttonhoverwatcher.h \
@@ -34,7 +35,8 @@ HEADERS += \
     frameabout.h \
     framecontact.h \
     frameozone.h \
-    mainwindow.h
+    mainwindow.h \
+    ozonegeneral.h
 
 FORMS += \
     formOxygen.ui \
@@ -43,7 +45,8 @@ FORMS += \
     frameabout.ui \
     framecontact.ui \
     frameozone.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    ozonegeneral.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -54,7 +57,3 @@ target.path = /home/pi/$${TARGET}/
 
 RESOURCES += \
     images/images.qrc
-
-DISTFILES += \
-    images/about_page_bg.jpg \
-    images/contact_bg.png

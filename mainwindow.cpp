@@ -15,11 +15,18 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+
     this->showFullScreen();
 
     QProcess process;
+//#ifdef QT_NO_DEBUG
     process.execute("omxplayer video.mp4");
+//#endif
 
+#ifdef QT_NO_DEBUG
+    ui->pushButton->setDisabled(true);
+    ui->pushButton->setHidden(true);
+#endif
     this->setWindowTitle("gardina");
 
     int x,y,w,h;

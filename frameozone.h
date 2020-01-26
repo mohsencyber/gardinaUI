@@ -18,6 +18,8 @@ public:
 private slots:
     void on_backButton_clicked();
 
+    void on_general_button_clicked();
+
 private:
     Ui::FrameOzone *ui;
 };
