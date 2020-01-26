@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>formAccess</class>
+ <widget class="QWidget" name="formAccess">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QPushButton" name="note_button">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>80</y>
+     <width>140</width>
+     <height>140</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Condensed</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#note_button:hover{
+border:none;
+image: url(:/button_note_highlight_bg.png);
+}
+QPushButton#note_button{
+border:none;
+image: url(:/button_note_bg.png);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>NOTE
+
+
+</string>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="doc_button">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>80</y>
+     <width>140</width>
+     <height>140</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Condensed</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#doc_button:hover{
+border:none;
+image: url(:/button_doc_highlight_bg.png);
+}
+
+QPushButton#doc_button{
+border:none;
+image: url(:/button_doc_bg.png);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>DOC
+
+
+</string>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="media_button">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>80</y>
+     <width>140</width>
+     <height>140</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Condensed</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#media_button:hover{
+border:none;
+image: url(:/button_media_highlight_bg.png);
+}
+
+QPushButton#media_button{
+border:none;
+image: url(:/button_media_bg.png);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>MEDIA
+
+
+</string>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="time_button">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>80</y>
+     <width>140</width>
+     <height>140</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Condensed</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#time_button:hover{
+border:none;
+image: url(:/button_reset_trial_highlight_bg.png);
+}
+QPushButton#time_button{
+border:none;
+image: url(:/button_reset_trial_bg.png);
+}</string>
+   </property>
+   <property name="text">
+    <string>TIME LEFT
+
+
+</string>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pass_button">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>270</y>
+     <width>140</width>
+     <height>140</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Condensed</family>
+     <pointsize>13</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pass_button:hover{
+border:none;
+image: url(:/button_password_highlight_bg.png);
+}
+QPushButton#pass_button{
+border:none;
+image: url(:/button_password_bg.png);
+}</string>
+   </property>
+   <property name="text">
+    <string>PASSWORD
+
+
+</string>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="lang_button">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>270</y>
+     <width>140</width>
+     <height>140</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Condensed</family>
+     <pointsize>13</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#lang_button:hover{
+border:none;
+image: url(:/button_language_highlight_bg.png);
+}
+QPushButton#lang_button{
+border:none;
+image: url(:/button_language_bg.png);
+}</string>
+   </property>
+   <property name="text">
+    <string>LANGUAGE
+
+
+</string>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="contact_button">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>270</y>
+     <width>140</width>
+     <height>140</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Condensed</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#contact_button:hover{
+border:none;
+image: url(:/button_contact_highlight_bg.png);
+}
+
+QPushButton#contact_button{
+border:none;
+image: url(:/button_contact_bg.png);
+}
+
+</string>
+   </property>
+   <property name="text">
+    <string>CONTACT
+
+
+</string>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="about_button">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>270</y>
+     <width>140</width>
+     <height>140</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Condensed</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#about_button:hover{
+border:none;
+image: url(:/button_about_highlight_bg.png);
+}
+
+QPushButton#about_button{
+border:none;
+image: url(:/button_about_bg.png);
+}</string>
+   </property>
+   <property name="text">
+    <string>ABOUT
+
+
+</string>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="back_button">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>420</y>
+     <width>140</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border:none;
+image: url(:/button_back.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
