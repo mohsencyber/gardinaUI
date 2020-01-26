@@ -159,6 +159,13 @@ border-image: url(:/button_touch_bg.png);
      <height>351</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame#frame{
+border: 2px solid ;
+border-radius: 12px;
+background-color: rgba(20,40,80,0.5);
+}</string>
+   </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
    </property>
@@ -168,10 +175,10 @@ border-image: url(:/button_touch_bg.png);
    <widget class="QLCDNumber" name="minNumber">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>137</x>
       <y>130</y>
-      <width>70</width>
-      <height>30</height>
+      <width>90</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -181,10 +188,10 @@ border-image: url(:/button_touch_bg.png);
    <widget class="QLCDNumber" name="secNumber">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>240</x>
       <y>130</y>
-      <width>70</width>
-      <height>30</height>
+      <width>90</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -196,8 +203,8 @@ border-image: url(:/button_touch_bg.png);
      <rect>
       <x>30</x>
       <y>130</y>
-      <width>70</width>
-      <height>30</height>
+      <width>90</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -207,7 +214,7 @@ border-image: url(:/button_touch_bg.png);
    <widget class="QSpinBox" name="secSpin">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>250</x>
       <y>230</y>
       <width>42</width>
       <height>26</height>
@@ -217,7 +224,7 @@ border-image: url(:/button_touch_bg.png);
    <widget class="QSpinBox" name="minSpin">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>147</x>
       <y>230</y>
       <width>42</width>
       <height>26</height>
@@ -250,7 +257,7 @@ border-image: url(:/button_touch_bg.png);
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>147</x>
       <y>180</y>
       <width>67</width>
       <height>17</height>
@@ -263,7 +270,7 @@ border-image: url(:/button_touch_bg.png);
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>250</x>
       <y>180</y>
       <width>67</width>
       <height>17</height>

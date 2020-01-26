@@ -18,6 +18,8 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_secSpin_valueChanged(int arg1);
+
 private:
     Ui::OzoneGeneral *ui;
 };
