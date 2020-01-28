@@ -20,6 +20,14 @@ private slots:
 
     void on_secSpin_valueChanged(int arg1);
 
+    void on_mconfigButton_clicked();
+
+    void on_minSpin_valueChanged(int arg1);
+
+    void on_hourSpin_valueChanged(int arg1);
+
+    void on_hourminus_clicked();
+
 private:
     Ui::OzoneGeneral *ui;
 };
