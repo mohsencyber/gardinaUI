@@ -2,6 +2,7 @@
 #define OZONEGENERAL_H
 
 #include <QFrame>
+#include <QTimer>
 
 namespace Ui {
 class OzoneGeneral;
@@ -28,8 +29,18 @@ private slots:
 
     void on_hourminus_clicked();
 
+    void on_startButton_clicked();
+
+    void on_stopButton_clicked();
+
+    void on_touchButton_clicked();
+
+    void updateTimer();
+
 private:
     Ui::OzoneGeneral *ui;
+    QTimer *timer;
+
 };
 
 #endif // OZONEGENERAL_H

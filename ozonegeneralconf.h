@@ -5,6 +5,7 @@
 #include <QButtonGroup>
 #include <QJsonDocument>
 #include <QJsonArray>
+#include <QTimer>
 
 namespace Ui {
 class ozoneGeneralConf;
@@ -35,13 +36,20 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_startButton_clicked();
+
+    void on_stopButton_clicked();
+
+    void updateTimer();
+
 private:
     Ui::ozoneGeneralConf *ui;
     QButtonGroup *radioButtons;
     int hour,min,sec,ml;
+    int m_hour, m_min, m_sec;
     QJsonDocument  memoryDoc;
     QJsonArray     memoryArr;
-
+    QTimer         *timer;
 };
 
 #endif // OZONEGENERALCONF_H

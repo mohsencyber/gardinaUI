@@ -27,6 +27,8 @@
      <font>
       <family>Ubuntu Condensed</family>
       <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -63,6 +65,8 @@ image:url(:/button_oxygen_bg.png);</string>
      <font>
       <family>Ubuntu Condensed</family>
       <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -99,6 +103,8 @@ image:url(:/button_ozone_bg.png);</string>
      <font>
       <family>Ubuntu Condensed</family>
       <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -142,9 +148,9 @@ image:url(:/button_vacuum_bg.png);</string>
      <font>
       <family>Ubuntu Condensed</family>
       <pointsize>14</pointsize>
-      <weight>50</weight>
+      <weight>75</weight>
       <italic>false</italic>
-      <bold>false</bold>
+      <bold>true</bold>
      </font>
     </property>
     <property name="layoutDirection">

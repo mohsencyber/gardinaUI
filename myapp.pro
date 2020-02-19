@@ -23,8 +23,11 @@ SOURCES += \
     frameabout.cpp \
     framecontact.cpp \
     frameozone.cpp \
+    infection.cpp \
+    infectionconf.cpp \
     main.cpp \
     mainwindow.cpp \
+    ozonect.cpp \
     ozonegeneral.cpp \
     ozonegeneralconf.cpp
 
@@ -36,7 +39,10 @@ HEADERS += \
     frameabout.h \
     framecontact.h \
     frameozone.h \
+    infection.h \
+    infectionconf.h \
     mainwindow.h \
+    ozonect.h \
     ozonegeneral.h \
     ozonegeneralconf.h
 
@@ -47,7 +53,10 @@ FORMS += \
     frameabout.ui \
     framecontact.ui \
     frameozone.ui \
+    infection.ui \
+    infectionconf.ui \
     mainwindow.ui \
+    ozonect.ui \
     ozonegeneral.ui \
     ozonegeneralconf.ui
 

@@ -1,24 +1,19 @@
-#include "ozonegeneral.h"
-#include "ui_ozonegeneral.h"
-#include "ozonegeneralconf.h"
-#include <QSpinBox>
-#include <QLCDNumber>
+#include "infection.h"
+#include "ui_infection.h"
+#include "infectionconf.h"
 
-OzoneGeneral::OzoneGeneral(QWidget *parent) :
+Infection::Infection(QWidget *parent) :
     QFrame(parent),
-    ui(new Ui::OzoneGeneral)
+    ui(new Ui::Infection)
 {
     ui->setupUi(this);
-
-    this->setStyleSheet( " #OzoneGeneral { "
+    this->setStyleSheet( " #Infection { "
                          " border:none;border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
                          "}");
 
-    //connect( ui->secSpin,SIGNAL(valueChanged(int)),ui->secNumber,SLOT(display(int)));
-    //connect( ui->minSpin,SIGNAL(valueChanged(int)),ui->minNumber,SLOT(display(int)));
-    //connect( ui->hourSpin,SIGNAL(valueChanged(int)),ui->hourNumber,SLOT(display(int)));
     connect( ui->mlSpin,SIGNAL(valueChanged(int)),ui->mlNumber,SLOT(display(int)));
 
+    connect(ui->hourminus,SIGNAL(clicked()),ui->hourSpin,SLOT( stepDown() ));
     connect(ui->hourplus,SIGNAL(clicked()),ui->hourSpin,SLOT( stepUp() ));
 
     connect(ui->minminus,SIGNAL(clicked()),ui->minSpin,SLOT( stepDown() ));
@@ -34,18 +29,46 @@ OzoneGeneral::OzoneGeneral(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(updateTimer()));
 }
 
-OzoneGeneral::~OzoneGeneral()
+Infection::~Infection()
 {
     delete ui;
 }
 
-void OzoneGeneral::on_pushButton_clicked()
+void Infection::on_startButton_clicked()
+{
+    ui->startButton->setDisabled(true);
+    ui->pushButton->setDisabled(true);
+    timer->setInterval(1000);
+    timer->start();
+}
+
+void Infection::on_stopButton_clicked()
+{
+    ui->startButton->setDisabled(false);
+    ui->pushButton->setDisabled(false);
+    timer->stop();
+}
+
+void Infection::on_pushButton_clicked()
 {
     timer->stop();
     close();
 }
 
-void OzoneGeneral::on_secSpin_valueChanged(int arg1)
+
+void Infection::on_mconfigButton_clicked()
+{
+    InfectionConf *infectionConf = new InfectionConf();
+    infectionConf->setValues(ui->hourSpin->value(),ui->minSpin->value(),ui->secSpin->value(),ui->mlSpin->value());
+    infectionConf->showFullScreen();
+}
+
+/*void Infection::on_mlSpin_valueChanged(int arg1)
+{
+    arg1;
+}*/
+
+void Infection::on_secSpin_valueChanged(int arg1)
 {
     if ( arg1 == 60 ) {
         ui->secSpin->setValue(0);
@@ -59,14 +82,7 @@ void OzoneGeneral::on_secSpin_valueChanged(int arg1)
     ui->secNumber->display(ui->secSpin->value());
 }
 
-void OzoneGeneral::on_mconfigButton_clicked()
-{
-    ozoneGeneralConf *generalConf = new ozoneGeneralConf();
-    generalConf->setValues(ui->hourSpin->value(),ui->minSpin->value(),ui->secSpin->value(),ui->mlSpin->value());
-    generalConf->showFullScreen();
-}
-
-void OzoneGeneral::on_minSpin_valueChanged(int arg1)
+void Infection::on_minSpin_valueChanged(int arg1)
 {
     if ( arg1 == 60 ) {
         ui->minSpin->setValue(0);
@@ -80,7 +96,7 @@ void OzoneGeneral::on_minSpin_valueChanged(int arg1)
     ui->minNumber->display(ui->minSpin->value());
 }
 
-void OzoneGeneral::on_hourSpin_valueChanged(int arg1)
+void Infection::on_hourSpin_valueChanged(int arg1)
 {
     if ( arg1 == 24 ){
         ui->hourSpin->setValue(0);
@@ -92,38 +108,7 @@ void OzoneGeneral::on_hourSpin_valueChanged(int arg1)
     ui->hourNumber->display(ui->hourSpin->value());
 }
 
-void OzoneGeneral::on_hourminus_clicked()
-{
-    ui->hourSpin->stepDown();
-}
-
-void OzoneGeneral::on_startButton_clicked()
-{
-    ui->startButton->setDisabled(true);
-    ui->pushButton->setDisabled(true);
-    ui->touchButton->setDisabled(true);
-    timer->setInterval(1000);
-    timer->start();
-}
-
-void OzoneGeneral::on_stopButton_clicked()
-{
-    ui->startButton->setDisabled(false);
-    ui->pushButton->setDisabled(false);
-    ui->touchButton->setDisabled(false);
-    timer->stop();
-}
-
-void OzoneGeneral::on_touchButton_clicked()
-{
-    ui->hourSpin->setValue(0);
-    ui->minSpin->setValue(0);
-    ui->secSpin->setValue(0);
-    ui->mlSpin->setValue(1);
-    timer->stop();
-}
-
-void OzoneGeneral::updateTimer()
+void Infection::updateTimer()
 {
     if ( ui->hourSpin->value() == 0 &&
          ui->minSpin->value() == 0 &&
@@ -132,8 +117,6 @@ void OzoneGeneral::updateTimer()
         timer->stop();
         ui->startButton->setDisabled(false);
         ui->pushButton->setDisabled(false);
-        ui->touchButton->setDisabled(false);
-
     }else
         ui->secSpin->stepDown();
 }

@@ -1,15 +1,15 @@
-#include "ozonegeneralconf.h"
-#include "ui_ozonegeneralconf.h"
-#include "QFile"
+#include "infectionconf.h"
+#include "ui_infectionconf.h"
+#include <QFile>
 #include <QJsonObject>
+#include <QTimer>
 
-
-ozoneGeneralConf::ozoneGeneralConf(QWidget *parent) :
+InfectionConf::InfectionConf(QWidget *parent) :
     QFrame(parent),
-    ui(new Ui::ozoneGeneralConf)
+    ui(new Ui::InfectionConf)
 {
     ui->setupUi(this);
-    this->setStyleSheet( " #ozoneGeneralConf { "
+    this->setStyleSheet( " #InfectionConf { "
                          " border:none;border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
                          "}");
 
@@ -36,8 +36,8 @@ ozoneGeneralConf::ozoneGeneralConf(QWidget *parent) :
     radioButtons->setExclusive(true);
 
     QString valfile;
-    QFile memoryFile("m1file.dat");
-    memoryFile.open(QIODevice::ReadOnly | QIODevice::Text);
+    QFile memoryFile("m2file.dat");
+    memoryFile.open( QIODevice::ReadOnly | QIODevice::Text );
     valfile = memoryFile.readAll();
     memoryFile.close();
     memoryDoc = QJsonDocument::fromJson(valfile.toUtf8());
@@ -55,83 +55,46 @@ ozoneGeneralConf::ozoneGeneralConf(QWidget *parent) :
             m_min = memValues["min"].toInt();
             m_sec = memValues["sec"].toInt();
         });
-    timer = new  QTimer(this);
+    timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateTimer()));
 }
 
-ozoneGeneralConf::~ozoneGeneralConf()
+
+InfectionConf::~InfectionConf()
 {
     delete ui;
 }
 
-void ozoneGeneralConf::setValues(int hour, int min, int sec, int ml)
+void InfectionConf::setValues(int hour, int min, int sec, int ml)
 {
     this->hour=hour;
     this->min=min;
     this->sec=sec;
     this->ml=ml;
 }
-void ozoneGeneralConf::on_mconfigButton_clicked()
-{
 
-}
-
-void ozoneGeneralConf::on_pushButton_clicked()
+void InfectionConf::on_pushButton_clicked()
 {
     timer->stop();
     close();
 }
 
-void ozoneGeneralConf::on_hourSpin_valueChanged(int arg1)
+void InfectionConf::on_stopButton_clicked()
 {
-    if ( arg1 == 24 ){
-        ui->hourSpin->setValue(0);
-    }
-    if ( arg1 == -1){
-        ui->hourSpin->setValue(23);
-    }
-
-    ui->hourNumber->display(ui->hourSpin->value());
+    ui->startButton->setDisabled(false);
+    ui->pushButton->setDisabled(false);
+    timer->stop();
 }
 
-void ozoneGeneralConf::on_minSpin_valueChanged(int arg1)
-{
-    if ( arg1 == 60 ) {
-        ui->minSpin->setValue(0);
-        ui->hourSpin->stepUp();
-    }
-    if ( arg1 == -1 ){
-        ui->minSpin->setValue(59);
-        ui->hourSpin->stepDown();
-    }
-
-    ui->minNumber->display(ui->minSpin->value());
-}
-
-void ozoneGeneralConf::on_secSpin_valueChanged(int arg1)
-{
-    if ( arg1 == 60 ) {
-        ui->secSpin->setValue(0);
-        ui->minSpin->stepUp();
-    }
-    if ( arg1 == -1 ) {
-        ui->secSpin->setValue(59);
-        ui->minSpin->stepDown();
-    }
-
-    ui->secNumber->display(ui->secSpin->value());
-}
-
-void ozoneGeneralConf::on_setCurrentButton_clicked()
+void InfectionConf::on_setCurrentButton_clicked()
 {
     ui->hourNumber->display(hour);
     ui->minNumber->display(min);
     ui->secNumber->display(sec);
     ui->mlNumber->display(ml);
-    m_hour = hour;
+    m_hour = hour ;
     m_min = min;
     m_sec = sec;
-
     int idButton = radioButtons->checkedId();
     QJsonObject  datas ;
     datas.insert("hour",hour);
@@ -144,7 +107,7 @@ void ozoneGeneralConf::on_setCurrentButton_clicked()
     JsonObject.insert("memory",memoryArr);
     memoryDoc.setObject(JsonObject);
 
-    QFile memoryFile("m1file.dat");
+    QFile memoryFile("m2file.dat");
     memoryFile.open( QIODevice::WriteOnly | QIODevice::Text);
     memoryFile.write( memoryDoc.toJson());
 
@@ -152,12 +115,7 @@ void ozoneGeneralConf::on_setCurrentButton_clicked()
     //tr("Save paramter in memory " );//+QString::number(idButton));
 }
 
-void ozoneGeneralConf::on_pushButton_2_clicked()
-{
-
-}
-
-void ozoneGeneralConf::on_startButton_clicked()
+void InfectionConf::on_startButton_clicked()
 {
     ui->startButton->setDisabled(true);
     ui->pushButton->setDisabled(true);
@@ -165,45 +123,38 @@ void ozoneGeneralConf::on_startButton_clicked()
     timer->start();
 }
 
-void ozoneGeneralConf::on_stopButton_clicked()
+void InfectionConf::updateTimer()
 {
-    ui->startButton->setDisabled(false);
-    ui->pushButton->setDisabled(false);
-    timer->stop();
-}
-
-void ozoneGeneralConf::updateTimer()
-{
-    m_sec --;
-    if ( m_sec == -1 )
-    {
-        m_min --;
-        m_sec = 0;
-        if ( m_min == -1 )
+        m_sec --;
+        if ( m_sec == -1 )
         {
-            m_hour--;
-            m_min = 0;
-            if ( m_hour == -1 )
+            m_min --;
+            m_sec = 0;
+            if ( m_min == -1 )
             {
-                m_hour = 0;
+                m_hour--;
+                m_min = 0;
+                if ( m_hour == -1 )
+                {
+                    m_hour = 0;
+                }else {
+                    m_min = 59;
+                    m_sec = 59;
+                }
             }else {
-                m_min = 59;
                 m_sec = 59;
             }
-        }else {
-            m_sec = 59;
         }
-    }
 
-    if ( m_hour == 0 &&
-         m_sec == 0 &&
-         m_min == 0 )
-    {
-        timer->stop();
-        ui->startButton->setDisabled(false);
-        ui->pushButton->setDisabled(false);
-    }
-    ui->hourNumber->display(m_hour);
-    ui->minNumber->display(m_min);
-    ui->secNumber->display(m_sec);
+        if ( m_hour == 0 &&
+             m_sec == 0 &&
+             m_min == 0 )
+        {
+            timer->stop();
+            ui->startButton->setDisabled(false);
+            ui->pushButton->setDisabled(false);
+        }
+        ui->hourNumber->display(m_hour);
+        ui->minNumber->display(m_min);
+        ui->secNumber->display(m_sec);
 }

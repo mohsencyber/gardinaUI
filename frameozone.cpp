@@ -1,6 +1,8 @@
 #include "frameozone.h"
 #include "ui_frameozone.h"
 #include "ozonegeneral.h"
+#include "infection.h"
+#include "ozonect.h"
 
 FrameOzone::FrameOzone(QWidget *parent) :
     QFrame(parent),
@@ -24,4 +26,16 @@ void FrameOzone::on_general_button_clicked()
 {
     OzoneGeneral *ozoneGeneral = new OzoneGeneral();
     ozoneGeneral->showFullScreen();
+}
+
+void FrameOzone::on_infection_button_clicked()
+{
+    Infection *infection = new Infection();
+    infection->showFullScreen();
+}
+
+void FrameOzone::on_ct_button_clicked()
+{
+    OzoneCT *ozoneCT = new OzoneCT();
+    ozoneCT->showFullScreen();
 }
