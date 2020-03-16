@@ -6,6 +6,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QTimer>
+#include "myserialport.h"
 
 namespace Ui {
 class InfectionConf;
@@ -18,8 +19,14 @@ class InfectionConf : public QFrame
 public:
     explicit InfectionConf(QWidget *parent = nullptr);
     ~InfectionConf();
-
+    void setSerialport(MySerialPort *serialport);
     void setValues (int hour, int min, int sec, int ml);
+    void start();
+
+    void stop();
+
+    void end();
+
 private slots:
     void on_pushButton_clicked();
 
@@ -39,6 +46,7 @@ private:
     QJsonDocument  memoryDoc;
     QJsonArray     memoryArr;
     QTimer        *timer;
+    MySerialPort *m_serialport;
 };
 
 #endif // INFECTIONCONF_H

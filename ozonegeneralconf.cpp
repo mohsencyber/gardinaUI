@@ -78,6 +78,8 @@ void ozoneGeneralConf::on_mconfigButton_clicked()
 
 void ozoneGeneralConf::on_pushButton_clicked()
 {
+    m_serialport->waitforwrite();
+    m_serialport->close();
     timer->stop();
     close();
 }
@@ -161,6 +163,7 @@ void ozoneGeneralConf::on_startButton_clicked()
 {
     ui->startButton->setDisabled(true);
     ui->pushButton->setDisabled(true);
+    start();
     timer->setInterval(1000);
     timer->start();
 }
@@ -169,6 +172,7 @@ void ozoneGeneralConf::on_stopButton_clicked()
 {
     ui->startButton->setDisabled(false);
     ui->pushButton->setDisabled(false);
+    stop();
     timer->stop();
 }
 
@@ -199,11 +203,54 @@ void ozoneGeneralConf::updateTimer()
          m_sec == 0 &&
          m_min == 0 )
     {
+        end();
         timer->stop();
         ui->startButton->setDisabled(false);
         ui->pushButton->setDisabled(false);
+    }else{
+        start();
     }
     ui->hourNumber->display(m_hour);
     ui->minNumber->display(m_min);
     ui->secNumber->display(m_sec);
 }
+
+void ozoneGeneralConf::setSerialport(MySerialPort *serialport)
+{
+    m_serialport = serialport;
+}
+
+void ozoneGeneralConf::start()
+{
+    int startval=300+ui->mlNumber->intValue();
+    QString strStart=QString::number(startval)+"\n";
+    int interval=0;
+    m_serialport->open();
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(strStart.toUtf8(),interval);
+    }
+}
+
+void ozoneGeneralConf::stop()
+{
+
+    QString strStop = "300\n";
+    int interval = 0;
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(strStop.toUtf8(),interval);
+    }
+}
+
+void ozoneGeneralConf::end()
+{
+    QString end = "500\n";
+    int interval= 0;
+    stop();
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(end.toUtf8(),interval);
+    }
+}
+

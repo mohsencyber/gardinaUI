@@ -68,3 +68,42 @@ void OzoneCT::on_stopButton_clicked()
     ui->pushButton->setDisabled(false);
     ui->pauseButton->setDisabled(true);
 }
+
+void OzoneCT::setSerialport(MySerialPort *serialport)
+{
+    m_serialport = serialport;
+}
+
+void OzoneCT::start()
+{
+    QString strStart="100\n";
+    int interval=0;
+    m_serialport->open();
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(strStart.toUtf8(),interval);
+    }
+
+}
+
+void OzoneCT::stop()
+{
+    QString strStop = "200\n";
+    int interval = 0;
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(strStop.toUtf8(),interval);
+    }
+}
+
+void OzoneCT::end()
+{
+    QString end = "500\n";
+    int interval= 0;
+    stop();
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(end.toUtf8(),interval);
+    }
+
+}

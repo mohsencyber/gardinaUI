@@ -233,7 +233,7 @@ border-image: url(:/button_start_bg.png);
     <string notr="true">QFrame#frame{
 border: 2px solid ;
 border-radius: 12px;
-background-color: rgba(20,40,80,0.5);
+background-color: rgba(0,20,60,0.5);
 }</string>
    </property>
    <property name="frameShape">

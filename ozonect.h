@@ -2,6 +2,7 @@
 #define OZONECT_H
 
 #include <QFrame>
+#include "myserialport.h"
 
 namespace Ui {
 class OzoneCT;
@@ -14,6 +15,12 @@ class OzoneCT : public QFrame
 public:
     explicit OzoneCT(QWidget *parent = nullptr);
     ~OzoneCT();
+    void setSerialport(MySerialPort *serialport);
+    void start();
+
+    void stop();
+
+    void end();
 
 private slots:
     void on_pushButton_clicked();
@@ -27,6 +34,7 @@ private slots:
 private:
     Ui::OzoneCT *ui;
     bool isPause;
+    MySerialPort *m_serialport;
 };
 
 #endif // OZONECT_H

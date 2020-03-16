@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,6 +27,7 @@ SOURCES += \
     infectionconf.cpp \
     main.cpp \
     mainwindow.cpp \
+    myserialport.cpp \
     ozonect.cpp \
     ozonegeneral.cpp \
     ozonegeneralconf.cpp
@@ -42,6 +43,7 @@ HEADERS += \
     infection.h \
     infectionconf.h \
     mainwindow.h \
+    myserialport.h \
     ozonect.h \
     ozonegeneral.h \
     ozonegeneralconf.h

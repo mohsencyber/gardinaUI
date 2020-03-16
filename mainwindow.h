@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QToolButton>
+#include <myserialport.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,6 +32,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    MySerialPort *m_serialPort;
     //QToolButton *Access_button;
 };
 #endif // MAINWINDOW_H

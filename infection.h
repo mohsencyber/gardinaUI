@@ -3,6 +3,7 @@
 
 #include <QFrame>
 #include <QTimer>
+#include "myserialport.h"
 
 namespace Ui {
 class Infection;
@@ -15,6 +16,13 @@ class Infection : public QFrame
 public:
     explicit Infection(QWidget *parent = nullptr);
     ~Infection();
+    void setSerialport(MySerialPort *serialport);
+
+    void start();
+
+    void stop();
+
+    void end();
 
 private slots:
     void on_startButton_clicked();
@@ -38,6 +46,7 @@ private slots:
 private:
     Ui::Infection *ui;
     QTimer  *timer;
+    MySerialPort *m_serialport;
 };
 
 #endif // INFECTION_H

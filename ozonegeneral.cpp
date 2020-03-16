@@ -41,6 +41,8 @@ OzoneGeneral::~OzoneGeneral()
 
 void OzoneGeneral::on_pushButton_clicked()
 {
+    m_serialport->waitforwrite();
+    m_serialport->close();
     timer->stop();
     close();
 }
@@ -63,6 +65,7 @@ void OzoneGeneral::on_mconfigButton_clicked()
 {
     ozoneGeneralConf *generalConf = new ozoneGeneralConf();
     generalConf->setValues(ui->hourSpin->value(),ui->minSpin->value(),ui->secSpin->value(),ui->mlSpin->value());
+    generalConf->setSerialport(m_serialport);
     generalConf->showFullScreen();
 }
 
@@ -102,6 +105,8 @@ void OzoneGeneral::on_startButton_clicked()
     ui->startButton->setDisabled(true);
     ui->pushButton->setDisabled(true);
     ui->touchButton->setDisabled(true);
+    m_serialport->open();
+    touch = false;
     timer->setInterval(1000);
     timer->start();
 }
@@ -111,29 +116,96 @@ void OzoneGeneral::on_stopButton_clicked()
     ui->startButton->setDisabled(false);
     ui->pushButton->setDisabled(false);
     ui->touchButton->setDisabled(false);
+    stop();
     timer->stop();
 }
 
 void OzoneGeneral::on_touchButton_clicked()
 {
-    ui->hourSpin->setValue(0);
-    ui->minSpin->setValue(0);
-    ui->secSpin->setValue(0);
-    ui->mlSpin->setValue(1);
-    timer->stop();
+    int sendTouch=300,interval=0;
+    touch = !touch;
+    if ( touch ){
+        m_serialport->open();
+        ui->hourSpin->setValue(0);
+        ui->minSpin->setValue(0);
+        ui->secSpin->setValue(0);
+        sendTouch = 300+ui->mlNumber->intValue();
+        QString strTouch = QString::number(sendTouch)+"\n";
+        if ( m_serialport->isOpen())
+            m_serialport->write(strTouch.toUtf8(),interval);
+        timer->setInterval(1000);
+        timer->start();
+    }else{
+        ui->hourSpin->setValue(0);
+        ui->minSpin->setValue(0);
+        ui->secSpin->setValue(0);
+        ui->mlSpin->setValue(1);
+        stop();
+        timer->stop();
+    }
 }
+
 
 void OzoneGeneral::updateTimer()
 {
-    if ( ui->hourSpin->value() == 0 &&
-         ui->minSpin->value() == 0 &&
-         ui->secSpin->value() == 0 )
-    {
-        timer->stop();
-        ui->startButton->setDisabled(false);
-        ui->pushButton->setDisabled(false);
-        ui->touchButton->setDisabled(false);
+    if ( !touch ){
+       if ( ui->hourSpin->value() == 0 &&
+            ui->minSpin->value() == 0 &&
+            ui->secSpin->value() == 0 )
+       {
+           end();
+           timer->stop();
+           ui->startButton->setDisabled(false);
+           ui->pushButton->setDisabled(false);
+           ui->touchButton->setDisabled(false);
 
-    }else
-        ui->secSpin->stepDown();
+       }else
+           ui->secSpin->stepDown();
+
+    }else{
+        int sendTouch = 300+ui->mlNumber->intValue(),interval=0;
+        QString strTouch = QString::number(sendTouch)+"\n";
+        if ( m_serialport->isOpen())
+            m_serialport->write(strTouch.toUtf8(),interval);
+        ui->secSpin->stepUp();
+    }
+}
+
+void OzoneGeneral::setSerialport(MySerialPort *serialport)
+{
+    m_serialport = serialport;
+}
+
+void OzoneGeneral::start()
+{
+    QString strStart="100\n";
+    int interval=0;
+    m_serialport->open();
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(strStart.toUtf8(),interval);
+    }
+
+}
+
+void OzoneGeneral::stop()
+{
+    QString strStop = "300\n";
+    int interval = 0;
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(strStop.toUtf8(),interval);
+    }
+}
+
+void OzoneGeneral::end()
+{
+    QString end = "500\n";
+    int interval= 0;
+    stop();
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(end.toUtf8(),interval);
+    }
+
 }

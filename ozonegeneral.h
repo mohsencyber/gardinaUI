@@ -3,6 +3,7 @@
 
 #include <QFrame>
 #include <QTimer>
+#include "myserialport.h"
 
 namespace Ui {
 class OzoneGeneral;
@@ -15,6 +16,12 @@ class OzoneGeneral : public QFrame
 public:
     explicit OzoneGeneral(QWidget *parent = nullptr);
     ~OzoneGeneral();
+    void setSerialport(MySerialPort *serialport);
+    void start();
+
+    void stop();
+
+    void end();
 
 private slots:
     void on_pushButton_clicked();
@@ -40,7 +47,8 @@ private slots:
 private:
     Ui::OzoneGeneral *ui;
     QTimer *timer;
-
+    MySerialPort *m_serialport;
+    bool touch=false;
 };
 
 #endif // OZONEGENERAL_H

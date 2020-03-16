@@ -251,7 +251,7 @@ border-image: url(:/button_start_bg.png);
     <string notr="true">QFrame#frame{
 border: 2px solid ;
 border-radius: 12px;
-background-color: rgba(20,40,80,0.5);
+background-color: rgba(0,20,60,0.5);
 }</string>
    </property>
    <property name="frameShape">
@@ -454,10 +454,10 @@ background-color: rgba(20,40,80,0.5);
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>170</y>
-      <width>67</width>
-      <height>17</height>
+      <x>101</x>
+      <y>175</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="palette">

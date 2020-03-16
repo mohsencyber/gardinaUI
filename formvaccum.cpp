@@ -1,4 +1,4 @@
-#include "formvaccum.h"
+﻿#include "formvaccum.h"
 #include "ui_formvaccum.h"
 #include <QStyleOption>
 #include <QPainter>
@@ -32,11 +32,17 @@ void FormVaccum::paintEvent(QPaintEvent *)
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
 
+void FormVaccum::setSerialport(MySerialPort *serialport)
+{
+    m_serialport = serialport;
+}
 
 void FormVaccum::on_pushButton_clicked()
 {
-    timer->stop();
-    close();
+   m_serialport->waitforwrite();
+   m_serialport->close();
+   timer->stop();
+   close();
 }
 
 void FormVaccum::on_minplus_clicked()
@@ -65,6 +71,7 @@ void FormVaccum::on_startButton_clicked()
 {
     ui->startButton->setEnabled(false);
     ui->pushButton->setEnabled(false);
+    start();
     timer->setInterval(1000);
     timer->start();
     m_Min = ui->minNumber->intValue();
@@ -75,6 +82,7 @@ void FormVaccum::on_stopButton_clicked()
 {
     ui->startButton->setEnabled(true);
     ui->pushButton->setEnabled(true);
+    stop();
     timer->stop();
 }
 
@@ -93,6 +101,42 @@ void FormVaccum::updateTimer()
     }else{
         ui->startButton->setEnabled(true);
         ui->pushButton->setEnabled(true);
+        end();
         timer->stop();
     }
+}
+
+
+void FormVaccum::start()
+{
+    QString strStart="100\n";
+    int interval=0;
+    m_serialport->open();
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(strStart.toUtf8(),interval);
+    }
+
+}
+
+void FormVaccum::stop()
+{
+    QString strStop = "200\n";
+    int interval = 0;
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(strStop.toUtf8(),interval);
+    }
+}
+
+void FormVaccum::end()
+{
+    QString end = "500\n";
+    int interval= 0;
+    stop();
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(end.toUtf8(),interval);
+    }
+
 }

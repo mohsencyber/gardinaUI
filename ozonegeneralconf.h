@@ -6,6 +6,7 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QTimer>
+#include "myserialport.h"
 
 namespace Ui {
 class ozoneGeneralConf;
@@ -20,6 +21,15 @@ public:
     ~ozoneGeneralConf();
 
     void setValues (int hour, int min, int sec, int ml);
+
+    void setSerialport(MySerialPort *serialport);
+
+    void start();
+
+    void stop();
+
+    void end();
+
 
 private slots:
     void on_mconfigButton_clicked();
@@ -50,6 +60,7 @@ private:
     QJsonDocument  memoryDoc;
     QJsonArray     memoryArr;
     QTimer         *timer;
+    MySerialPort *m_serialport;
 };
 
 #endif // OZONEGENERALCONF_H

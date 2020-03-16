@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QTimer>
+#include <myserialport.h>
 
 namespace Ui {
 class FormVaccum;
@@ -17,6 +18,14 @@ public:
     ~FormVaccum();
 
     void paintEvent(QPaintEvent *event) ;
+
+    void setSerialport(MySerialPort *serialport);
+
+    void start();
+
+    void stop();
+
+    void end();
 
 private slots:
     void on_pushButton_clicked();
@@ -37,6 +46,7 @@ private:
     Ui::FormVaccum *ui;
     QTimer *timer;
     int m_Min,m_Sec;
+    MySerialPort *m_serialport;
 };
 
 #endif // FORMVACCUM_H

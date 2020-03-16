@@ -25,17 +25,25 @@ void FrameOzone::on_backButton_clicked()
 void FrameOzone::on_general_button_clicked()
 {
     OzoneGeneral *ozoneGeneral = new OzoneGeneral();
+    ozoneGeneral->setSerialport(m_serialport);
     ozoneGeneral->showFullScreen();
 }
 
 void FrameOzone::on_infection_button_clicked()
 {
     Infection *infection = new Infection();
+    infection->setSerialport(m_serialport);
     infection->showFullScreen();
 }
 
 void FrameOzone::on_ct_button_clicked()
 {
     OzoneCT *ozoneCT = new OzoneCT();
+    ozoneCT->setSerialport(m_serialport);
     ozoneCT->showFullScreen();
+}
+
+void FrameOzone::setSerialport(MySerialPort *serialport)
+{
+    m_serialport = serialport;
 }

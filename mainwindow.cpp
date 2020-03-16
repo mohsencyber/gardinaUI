@@ -8,6 +8,7 @@
 #include "formOxygen.h"
 #include "formvaccum.h"
 #include "frameozone.h"
+#include <QSettings>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -35,6 +36,10 @@ MainWindow::MainWindow(QWidget *parent)
     bool Ozone_enable = true;
     bool Vacuum_enable = true;
 
+    QSettings setting("gardina.cfg",QSettings::IniFormat);
+    QString l_portname = setting.value("portname").toString();
+    int l_baudrate = setting.value("baudrate").toInt();
+    m_serialPort = new MySerialPort(l_portname,l_baudrate);
     ButtonHoverWatcher * watcheroxygen = new ButtonHoverWatcher(this);
     ButtonHoverWatcher * watcherozone = new ButtonHoverWatcher(this);
     ButtonHoverWatcher * watchervacuum = new ButtonHoverWatcher(this);
@@ -91,6 +96,7 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_Ozone_button_clicked()
 {
     FrameOzone *ozone = new FrameOzone();
+    ozone->setSerialport(m_serialPort);
     ozone->showFullScreen();
 }
 
@@ -109,11 +115,13 @@ void MainWindow::on_access_button_clicked()
 void MainWindow::on_Oxygen_button_clicked()
 {
     FormOxygen *formOxygen = new FormOxygen();
+    formOxygen->setSerialport(m_serialPort);
     formOxygen->showFullScreen();
 }
 
 void MainWindow::on_vacuum_button_clicked()
 {
     FormVaccum *formVaccum = new FormVaccum();
+    formVaccum->setSerialport(m_serialPort);
     formVaccum->showFullScreen();
 }

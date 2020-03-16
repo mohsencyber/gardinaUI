@@ -1,6 +1,7 @@
 #include "infection.h"
 #include "ui_infection.h"
 #include "infectionconf.h"
+#include <QMessageBox>
 
 Infection::Infection(QWidget *parent) :
     QFrame(parent),
@@ -38,19 +39,26 @@ void Infection::on_startButton_clicked()
 {
     ui->startButton->setDisabled(true);
     ui->pushButton->setDisabled(true);
+    m_serialport->open();
+    start();
     timer->setInterval(1000);
     timer->start();
 }
 
 void Infection::on_stopButton_clicked()
 {
+    const QString title="",body="Ozone Stopped.";
+    stop();
     ui->startButton->setDisabled(false);
     ui->pushButton->setDisabled(false);
     timer->stop();
+    QMessageBox::information(this,title,body,QMessageBox::Ok);
 }
 
 void Infection::on_pushButton_clicked()
 {
+    m_serialport->waitforwrite();
+    m_serialport->close();
     timer->stop();
     close();
 }
@@ -60,6 +68,7 @@ void Infection::on_mconfigButton_clicked()
 {
     InfectionConf *infectionConf = new InfectionConf();
     infectionConf->setValues(ui->hourSpin->value(),ui->minSpin->value(),ui->secSpin->value(),ui->mlSpin->value());
+    infectionConf->setSerialport(m_serialport);
     infectionConf->showFullScreen();
 }
 
@@ -114,9 +123,50 @@ void Infection::updateTimer()
          ui->minSpin->value() == 0 &&
          ui->secSpin->value() == 0 )
     {
+        end();
         timer->stop();
         ui->startButton->setDisabled(false);
         ui->pushButton->setDisabled(false);
-    }else
+    }else{
+        start();
         ui->secSpin->stepDown();
+    }
+}
+
+void Infection::setSerialport(MySerialPort *serialport)
+{
+    m_serialport = serialport;
+}
+
+void Infection::start()
+{
+    QString strStart = QString::number(ui->mlNumber->intValue() )+"\n";
+    int interval=0;
+    m_serialport->open();
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(strStart.toUtf8(),interval);
+    }
+}
+
+void Infection::stop()
+{
+    QString strStop = "0\n";
+    int interval = 0;
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(strStop.toUtf8(),interval);
+    }
+}
+
+void Infection::end()
+{
+    QString end = "500\n";
+    int interval= 0;
+    stop();
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(end.toUtf8(),interval);
+    }
+
 }

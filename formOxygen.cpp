@@ -2,6 +2,7 @@
 #include "ui_formOxygen.h"
 #include <QStyleOption>
 #include <QPainter>
+#include <QSerialPortInfo>
 
 FormOxygen::FormOxygen(QWidget *parent) :
     QWidget(parent),
@@ -15,6 +16,13 @@ FormOxygen::FormOxygen(QWidget *parent) :
     connect(ui->minplus,SIGNAL(clicked()),ui->minSpin,SLOT( stepUp() ));
     timer = new  QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateTimer()));
+
+    /*const auto portInfo = QSerialPortInfo::availablePorts();
+    QString ports;
+    for (const QSerialPortInfo &info : portInfo)
+        ports += info.portName()+"-";
+    ui->label_2->setText(ports);*/
+
 }
 
 FormOxygen::~FormOxygen()
@@ -32,6 +40,8 @@ void FormOxygen::paintEvent(QPaintEvent *)
 
 void FormOxygen::on_pushButton_clicked()
 {
+    m_serialport->waitforwrite();
+    m_serialport->close();
     timer->stop();
     close();
 }
@@ -40,6 +50,7 @@ void FormOxygen::on_startButton_clicked()
 {
     ui->startButton->setDisabled(true);
     ui->pushButton->setDisabled(true);
+    start();
     timer->setInterval(1000);
     timer->start();
     m_Min = ui->minNumber->intValue();
@@ -50,6 +61,7 @@ void FormOxygen::on_stopButton_clicked()
 {
     ui->startButton->setDisabled(false);
     ui->pushButton->setDisabled(false);
+    stop();
     timer->stop();
 }
 
@@ -90,6 +102,45 @@ void FormOxygen::updateTimer()
     }else{
         ui->startButton->setEnabled(true);
         ui->pushButton->setEnabled(true);
+        end();
         timer->stop();
     }
+}
+
+void FormOxygen::setSerialport(MySerialPort *serialport)
+{
+    m_serialport = serialport;
+}
+void FormOxygen::start()
+{
+    QString strStart="600\n";
+    int interval=0;
+    m_serialport->open();
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(strStart.toUtf8(),interval);
+    }
+
+}
+
+void FormOxygen::stop()
+{
+    QString strStop = "700\n";
+    int interval = 0;
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(strStop.toUtf8(),interval);
+    }
+}
+
+void FormOxygen::end()
+{
+    QString end = "500\n";
+    int interval= 0;
+    stop();
+    if ( m_serialport->isOpen())
+    {
+        m_serialport->write(end.toUtf8(),interval);
+    }
+
 }
