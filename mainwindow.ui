@@ -36,7 +36,7 @@
 image:url(:/button_oxygen_bg.png);</string>
     </property>
     <property name="text">
-     <string>Oxygen
+     <string>OXYGEN
 
 
 
@@ -74,7 +74,7 @@ image:url(:/button_oxygen_bg.png);</string>
 image:url(:/button_ozone_bg.png);</string>
     </property>
     <property name="text">
-     <string>Ozone
+     <string>OZONE
 
 
 
@@ -112,7 +112,7 @@ image:url(:/button_ozone_bg.png);</string>
 image:url(:/button_vacuum_bg.png);</string>
     </property>
     <property name="text">
-     <string>Vacuum
+     <string>VACUUM
 
 
 
@@ -161,7 +161,7 @@ image:url(:/button_vacuum_bg.png);</string>
 image:url(:/button_access_bg.png);</string>
     </property>
     <property name="text">
-     <string>Access
+     <string>ACCESS
 
 
 </string>

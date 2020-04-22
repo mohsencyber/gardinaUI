@@ -4,6 +4,7 @@
 #include <QPainter>
 #include <frameabout.h>
 #include <framecontact.h>
+#include <QPropertyAnimation>
 
 formAccess::formAccess(QWidget *parent):
     QWidget(parent),

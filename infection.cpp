@@ -52,7 +52,7 @@ void Infection::on_stopButton_clicked()
     ui->startButton->setDisabled(false);
     ui->pushButton->setDisabled(false);
     timer->stop();
-    QMessageBox::information(this,title,body,QMessageBox::Ok);
+    //QMessageBox::information(this,title,body,QMessageBox::Ok);
 }
 
 void Infection::on_pushButton_clicked()

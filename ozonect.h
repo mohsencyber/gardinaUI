@@ -2,6 +2,8 @@
 #define OZONECT_H
 
 #include <QFrame>
+#include <QButtonGroup>
+#include <QTimer>
 #include "myserialport.h"
 
 namespace Ui {
@@ -14,8 +16,11 @@ class OzoneCT : public QFrame
 
 public:
     explicit OzoneCT(QWidget *parent = nullptr);
+
     ~OzoneCT();
+
     void setSerialport(MySerialPort *serialport);
+
     void start();
 
     void stop();
@@ -31,10 +36,24 @@ private slots:
 
     void on_stopButton_clicked();
 
+    void updateTimer();
+
+    void on_Button_Enter_clicked();
+
+    void on_Button_Delete_clicked();
+
+    void on_Button_Reset_clicked();
+
 private:
+    void timeToSeconds();
+
     Ui::OzoneCT *ui;
     bool isPause;
+    QString enter;
+    QTimer         *timer;
     MySerialPort *m_serialport;
+    QButtonGroup *radioButtons;
+    int ConcenVal , DoseVal , MinVal , SecVal;
 };
 
 #endif // OZONECT_H

@@ -15,6 +15,7 @@ public:
     ~formAccess();
 
     void paintEvent(QPaintEvent *);
+
 private slots:
     void on_back_button_clicked();
 
