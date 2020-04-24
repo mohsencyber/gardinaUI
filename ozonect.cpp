@@ -89,16 +89,19 @@ void OzoneCT::on_pushButton_clicked()
 
 void OzoneCT::on_startButton_clicked()
 {
-    ui->startButton->setDisabled(true);
-    ui->pushButton->setDisabled(true);
-    ui->pauseButton->setDisabled(false);
     timeToSeconds();
     ui->label_Min->setText(QString::number(MinVal).rightJustified(2,'0'));
     ui->label_Sec->setText(QString::number(SecVal).rightJustified(2,'0'));
-    start();
-    timer->setInterval(1000);
-    timer->start();
-    isPause = false;
+    if ( MinVal > 0 &&
+         SecVal > 0 ){
+        ui->startButton->setDisabled(true);
+        ui->pushButton->setDisabled(true);
+        ui->pauseButton->setDisabled(false);
+        start();
+        timer->setInterval(1000);
+        timer->start();
+        isPause = false;
+    }
 }
 
 void OzoneCT::on_pauseButton_clicked()
