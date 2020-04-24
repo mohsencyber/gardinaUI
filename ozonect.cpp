@@ -62,6 +62,8 @@ void OzoneCT::updateTimer()
         MinVal --;
         SecVal = 59;
     }
+    if ( MinVal == -1 )
+        MinVal = SecVal = 0;
 
     ui->label_Min->setText(QString::number(MinVal).rightJustified(2,'0'));
     ui->label_Sec->setText(QString::number(SecVal).rightJustified(2,'0'));
