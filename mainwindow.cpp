@@ -39,6 +39,11 @@ MainWindow::MainWindow(QWidget *parent)
     QSettings setting("gardina.cfg",QSettings::IniFormat);
     QString l_portname = setting.value("portname").toString();
     int l_baudrate = setting.value("baudrate").toInt();
+    bool lbExitEnable = true, lbShutDownEnable = true;
+
+    lbExitEnable = setting.value("exit_enable","yes").toString().toUpper()=="YES";
+    lbShutDownEnable = setting.value("shutdown_enable","yes").toString().toUpper()=="YES";
+
     m_serialPort = new MySerialPort(l_portname,l_baudrate);
     ButtonHoverWatcher * watcheroxygen = new ButtonHoverWatcher(this);
     ButtonHoverWatcher * watcherozone = new ButtonHoverWatcher(this);
@@ -79,6 +84,10 @@ MainWindow::MainWindow(QWidget *parent)
     this->setStyleSheet( "#MainWindow { "
                  " border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
                  "}");
+    ui->pushButton->setEnabled(lbExitEnable);
+    ui->pushButton->setVisible(lbExitEnable);
+    ui->poweroff_button->setEnabled(lbShutDownEnable);
+    ui->poweroff_button->setVisible(lbShutDownEnable);
 }
 
 
