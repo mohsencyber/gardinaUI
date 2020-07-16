@@ -44,11 +44,18 @@ private slots:
 
     void updateTimer();
 
+    void on_touchButton_pressed();
+
+    void on_touchButton_released();
+
+    void on_mlSpin_valueChanged(int arg1);
+
 private:
     Ui::OzoneGeneral *ui;
     QTimer *timer;
     MySerialPort *m_serialport;
     bool touch=false;
+    int m_userMin,m_userSec,m_userHour;
 };
 
 #endif // OZONEGENERAL_H

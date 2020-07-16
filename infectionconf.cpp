@@ -36,7 +36,7 @@ InfectionConf::InfectionConf(QWidget *parent) :
     radioButtons->setExclusive(true);
 
     QString valfile;
-    QFile memoryFile("m2file.dat");
+    QFile memoryFile("/home/pi/myapp/m2file.dat");
     memoryFile.open( QIODevice::ReadOnly | QIODevice::Text );
     valfile = memoryFile.readAll();
     memoryFile.close();

@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
     bool Ozone_enable = true;
     bool Vacuum_enable = true;
 
-    QSettings setting("gardina.cfg",QSettings::IniFormat);
+    QSettings setting("/home/pi/myapp/gardina.cfg",QSettings::IniFormat);
     QString l_portname = setting.value("portname").toString();
     int l_baudrate = setting.value("baudrate").toInt();
     bool lbExitEnable = true, lbShutDownEnable = true;

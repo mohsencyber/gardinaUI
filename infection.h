@@ -43,10 +43,13 @@ private slots:
 
     void updateTimer();
 
+    void on_mlSpin_valueChanged(int arg1);
+
 private:
     Ui::Infection *ui;
     QTimer  *timer;
     MySerialPort *m_serialport;
+    int m_userMin,m_userSec,m_userHour;
 };
 
 #endif // INFECTION_H

@@ -45,7 +45,7 @@ private slots:
 private:
     Ui::FormVaccum *ui;
     QTimer *timer;
-    int m_Min,m_Sec;
+    int m_Min,m_Sec , m_UserMin;
     MySerialPort *m_serialport;
 };
 

@@ -45,7 +45,7 @@ private slots:
 private:
     Ui::FormOxygen *ui;
     QTimer *timer;
-    int m_Min,m_Sec;
+    int m_Min,m_Sec,m_userMin;
     MySerialPort *m_serialport;
 };
 

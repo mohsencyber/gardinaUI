@@ -473,6 +473,9 @@ background-color: rgba(0,20,60,0.5);
       <height>30</height>
      </rect>
     </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
     <property name="maximum">
      <number>59</number>
     </property>
@@ -486,6 +489,9 @@ background-color: rgba(0,20,60,0.5);
       <height>30</height>
      </rect>
     </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
     <property name="maximum">
      <number>59</number>
     </property>
@@ -498,6 +504,9 @@ background-color: rgba(0,20,60,0.5);
       <width>49</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
     </property>
     <property name="maximum">
      <number>24</number>
@@ -574,6 +583,9 @@ background-color: rgba(0,20,60,0.5);
       <width>50</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
     </property>
     <property name="minimum">
      <number>1</number>

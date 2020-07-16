@@ -3,6 +3,7 @@
 
 #include <QSerialPort>
 #include <QTimer>
+#include <iostream>
 
 class MySerialPort
 {

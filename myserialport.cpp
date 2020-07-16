@@ -1,13 +1,15 @@
 #include "myserialport.h"
 #include <QSerialPort>
+#include <QFile>
 //#include <QtSerialPort>
 
-MySerialPort::MySerialPort(QString& portName, int& buadRate)
+MySerialPort::MySerialPort(QString& portName, int& baudRate)
 {
     //m_timer.setSingleShot(true);
+
     m_serialPort.setPortName(portName);
     m_serialPort.setParity(QSerialPort::NoParity);
-    m_serialPort.setBaudRate(buadRate);
+    m_serialPort.setBaudRate(baudRate);
     m_serialPort.setStopBits(QSerialPort::OneStop);
     m_serialPort.setDataBits(QSerialPort::Data8);
 
@@ -16,8 +18,11 @@ MySerialPort::MySerialPort(QString& portName, int& buadRate)
 
 bool MySerialPort::open()
 {
+    QFile memoryFile("myapp.log");
+
     if ( m_serialPort.isOpen() )
         return true;
+
     return m_serialPort.open(QIODevice::WriteOnly);
 }
 

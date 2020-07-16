@@ -30,7 +30,8 @@ SOURCES += \
     myserialport.cpp \
     ozonect.cpp \
     ozonegeneral.cpp \
-    ozonegeneralconf.cpp
+    ozonegeneralconf.cpp \
+    qtouchspinbox.cpp
 
 HEADERS += \
     buttonhoverwatcher.h \
@@ -46,7 +47,8 @@ HEADERS += \
     myserialport.h \
     ozonect.h \
     ozonegeneral.h \
-    ozonegeneralconf.h
+    ozonegeneralconf.h \
+    qtouchspinbox.h
 
 FORMS += \
     formOxygen.ui \
