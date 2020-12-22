@@ -351,14 +351,17 @@ background-color: rgba(0,20,60,0.5);
       </disabled>
      </palette>
     </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="frameShape">
-     <enum>QFrame::WinPanel</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
     <property name="digitCount">
-     <number>4</number>
+     <number>2</number>
     </property>
     <property name="mode">
      <enum>QLCDNumber::Dec</enum>
@@ -441,10 +444,10 @@ background-color: rgba(0,20,60,0.5);
      </palette>
     </property>
     <property name="frameShape">
-     <enum>QFrame::WinPanel</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="digitCount">
-     <number>4</number>
+     <number>2</number>
     </property>
     <property name="segmentStyle">
      <enum>QLCDNumber::Flat</enum>
@@ -458,6 +461,14 @@ background-color: rgba(0,20,60,0.5);
       <width>80</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Waree</family>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="cursor">
      <cursorShape>BlankCursor</cursorShape>
@@ -475,10 +486,13 @@ background-color: rgba(0,20,60,0.5);
      <bool>true</bool>
     </property>
     <property name="minimum">
-     <number>0</number>
+     <number>-1</number>
     </property>
     <property name="maximum">
-     <number>60</number>
+     <number>61</number>
+    </property>
+    <property name="value">
+     <number>1</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">

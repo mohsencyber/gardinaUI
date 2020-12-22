@@ -4,6 +4,7 @@
 #include <QFrame>
 #include <QTimer>
 #include "myserialport.h"
+#include "timeleft.h"
 
 namespace Ui {
 class OzoneGeneral;
@@ -52,6 +53,7 @@ private slots:
 
 private:
     Ui::OzoneGeneral *ui;
+    TimeLeft *m_timeLeft;
     QTimer *timer;
     MySerialPort *m_serialport;
     bool touch=false;

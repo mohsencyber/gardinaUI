@@ -7,6 +7,7 @@
 #include <QJsonArray>
 #include <QTimer>
 #include "myserialport.h"
+#include "timeleft.h"
 
 namespace Ui {
 class ozoneGeneralConf;
@@ -60,6 +61,7 @@ private:
     QJsonDocument  memoryDoc;
     QJsonArray     memoryArr;
     QTimer         *timer;
+    TimeLeft       *m_timeLeft;
     MySerialPort *m_serialport;
 };
 

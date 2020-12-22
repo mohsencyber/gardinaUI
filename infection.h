@@ -4,6 +4,7 @@
 #include <QFrame>
 #include <QTimer>
 #include "myserialport.h"
+#include "timeleft.h"
 
 namespace Ui {
 class Infection;
@@ -46,6 +47,7 @@ private slots:
     void on_mlSpin_valueChanged(int arg1);
 
 private:
+    TimeLeft *m_timeLeft;
     Ui::Infection *ui;
     QTimer  *timer;
     MySerialPort *m_serialport;

@@ -7,6 +7,7 @@
 #include <QJsonDocument>
 #include <QTimer>
 #include "myserialport.h"
+#include "timeleft.h"
 
 namespace Ui {
 class InfectionConf;
@@ -40,6 +41,7 @@ private slots:
 
 private:
     Ui::InfectionConf *ui;
+    TimeLeft  *m_timeLeft;
     QButtonGroup *radioButtons;
     int hour,min,sec,ml;
     int m_hour,m_min,m_sec;

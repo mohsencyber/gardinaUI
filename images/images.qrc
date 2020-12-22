@@ -108,5 +108,8 @@
         <file>poweroff3.png</file>
         <file>about_page_bg.jpg</file>
         <file>contact_bg.png</file>
+        <file>save.png</file>
+        <file>save2.png</file>
+        <file>save1.png</file>
     </qresource>
 </RCC>

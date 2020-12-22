@@ -23,6 +23,12 @@ private slots:
 
     void on_contact_button_clicked();
 
+    void on_lang_button_clicked();
+
+    void on_pass_button_clicked();
+
+    void on_time_button_clicked();
+
 private:
     Ui::formAccess *ui;
 };

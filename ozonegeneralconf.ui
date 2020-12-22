@@ -289,13 +289,16 @@ background-color: rgba(0,20,60,0.5);
      </palette>
     </property>
     <property name="frameShape">
-     <enum>QFrame::WinPanel</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <property name="smallDecimalPoint">
+     <bool>false</bool>
+    </property>
     <property name="digitCount">
-     <number>4</number>
+     <number>2</number>
     </property>
     <property name="mode">
      <enum>QLCDNumber::Dec</enum>
@@ -351,10 +354,10 @@ background-color: rgba(0,20,60,0.5);
      </palette>
     </property>
     <property name="frameShape">
-     <enum>QFrame::WinPanel</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="digitCount">
-     <number>4</number>
+     <number>2</number>
     </property>
     <property name="segmentStyle">
      <enum>QLCDNumber::Flat</enum>
@@ -407,13 +410,13 @@ background-color: rgba(0,20,60,0.5);
      </palette>
     </property>
     <property name="frameShape">
-     <enum>QFrame::WinPanel</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="smallDecimalPoint">
      <bool>false</bool>
     </property>
     <property name="digitCount">
-     <number>4</number>
+     <number>2</number>
     </property>
     <property name="segmentStyle">
      <enum>QLCDNumber::Flat</enum>
@@ -765,10 +768,10 @@ background-color: rgba(0,20,60,0.5);
      </palette>
     </property>
     <property name="frameShape">
-     <enum>QFrame::WinPanel</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="digitCount">
-     <number>4</number>
+     <number>2</number>
     </property>
     <property name="segmentStyle">
      <enum>QLCDNumber::Flat</enum>

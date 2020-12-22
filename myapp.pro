@@ -1,8 +1,9 @@
-QT       += core gui serialport
+QT       += core gui serialport quickwidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
+
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -17,46 +18,70 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     buttonhoverwatcher.cpp \
+    dialogtllogin.cpp \
     formOxygen.cpp \
     formaccess.cpp \
     formvaccum.cpp \
     frameabout.cpp \
     framecontact.cpp \
+    framelang.cpp \
+    framelogin.cpp \
     frameozone.cpp \
+    framepassword.cpp \
+    frametimeleft.cpp \
+    frametllogin.cpp \
     infection.cpp \
     infectionconf.cpp \
     main.cpp \
     mainwindow.cpp \
+    mylineedit.cpp \
     myserialport.cpp \
     ozonect.cpp \
     ozonegeneral.cpp \
     ozonegeneralconf.cpp \
-    qtouchspinbox.cpp
+    qtouchspinbox.cpp \
+    softkeyboard.cpp \
+    timeleft.cpp
 
 HEADERS += \
     buttonhoverwatcher.h \
+    dialogtllogin.h \
     formOxygen.h \
     formaccess.h \
     formvaccum.h \
     frameabout.h \
     framecontact.h \
+    framelang.h \
+    framelogin.h \
     frameozone.h \
+    framepassword.h \
+    frametimeleft.h \
+    frametllogin.h \
     infection.h \
     infectionconf.h \
     mainwindow.h \
+    mylineedit.h \
     myserialport.h \
     ozonect.h \
     ozonegeneral.h \
     ozonegeneralconf.h \
-    qtouchspinbox.h
+    qtouchspinbox.h \
+    softkeyboard.h \
+    timeleft.h
 
 FORMS += \
+    dialogtllogin.ui \
     formOxygen.ui \
     formaccess.ui \
     formvaccum.ui \
     frameabout.ui \
     framecontact.ui \
+    framelang.ui \
+    framelogin.ui \
     frameozone.ui \
+    framepassword.ui \
+    frametimeleft.ui \
+    frametllogin.ui \
     infection.ui \
     infectionconf.ui \
     mainwindow.ui \
@@ -73,3 +98,7 @@ target.path = /home/pi/$${TARGET}/
 
 RESOURCES += \
     images/images.qrc
+
+DISTFILES +=
+
+

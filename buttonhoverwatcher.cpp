@@ -28,7 +28,7 @@ bool ButtonHoverWatcher::eventFilter(QObject * watched, QEvent * event)
         //button->setIcon(*qIconButtonEnter);
         //button->setGeometry(130,50,110,90);
         //button->setIconSize(qIconSize);
-        button->setStyleSheet("border:none;image:url("+qIconStringEnter+");");
+        button->setStyleSheet("border:none;text-align:left;image:url("+qIconStringEnter+");");
         return true;
     }
 
@@ -36,7 +36,7 @@ bool ButtonHoverWatcher::eventFilter(QObject * watched, QEvent * event)
         // The push button is not hovered by mouse
         //button->setIcon(*qIconButtonLeave);
         //button->setIconSize(qIconSize);
-        button->setStyleSheet("border:none;image:url("+qIconStringLeave+");");
+        button->setStyleSheet("border:none;text-align:left;image:url("+qIconStringLeave+");");
         //button->setGeometry(130,50,110,90);
         return true;
     }

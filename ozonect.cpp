@@ -7,6 +7,7 @@ OzoneCT::OzoneCT(QWidget *parent) :
     ui(new Ui::OzoneCT)
 {
     ui->setupUi(this);
+    m_timeLeft = new TimeLeft();
     this->setStyleSheet( " #OzoneCT { "
                          " border:none;border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
                          "}");
@@ -78,6 +79,7 @@ void OzoneCT::updateTimer()
         ui->pushButton->setDisabled(false);
         ui->pauseButton->setDisabled(true);
     }else{
+        m_timeLeft->incTime();
         start();
     }
 }

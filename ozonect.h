@@ -5,6 +5,7 @@
 #include <QButtonGroup>
 #include <QTimer>
 #include "myserialport.h"
+#include "timeleft.h"
 
 namespace Ui {
 class OzoneCT;
@@ -48,6 +49,7 @@ private:
     void timeToSeconds();
 
     Ui::OzoneCT *ui;
+    TimeLeft *m_timeLeft;
     bool isPause;
     QString enter;
     QTimer         *timer;
