@@ -41,7 +41,7 @@ void myLineEdit::mousePressEvent(QMouseEvent *e)
         QString strTypped = this->text();
         m_keyboard->setStringTypped(strTypped);
         m_echomode = this->echoMode();
-        this->setEchoMode(QLineEdit::Normal);
+        //this->setEchoMode(QLineEdit::Normal);
         m_keyboard->show();
         _keyboardshowed=true;
     //}
