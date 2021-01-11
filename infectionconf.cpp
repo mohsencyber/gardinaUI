@@ -14,9 +14,9 @@ InfectionConf::InfectionConf(QWidget *parent) :
                          " border:none;border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
                          "}");
 
-    //connect( ui->secSpin,SIGNAL(valueChanged(int)),ui->secNumber,SLOT(display(int)));
-    //connect( ui->minSpin,SIGNAL(valueChanged(int)),ui->minNumber,SLOT(display(int)));
-    //connect( ui->hourSpin,SIGNAL(valueChanged(int)),ui->hourNumber,SLOT(display(int)));
+    //connect( ui->secSpin,SIGNAL(valueChanged(int)),ui->secNumber,SLOT(setText(int)));
+    //connect( ui->minSpin,SIGNAL(valueChanged(int)),ui->minNumber,SLOT(setText(int)));
+    //connect( ui->hourSpin,SIGNAL(valueChanged(int)),ui->hourNumber,SLOT(setText(int)));
     ui->secSpin->setDisabled(true);
     ui->minSpin->setDisabled(true);
     ui->hourSpin->setDisabled(true);
@@ -48,10 +48,10 @@ InfectionConf::InfectionConf(QWidget *parent) :
 
     connect(radioButtons, QOverload<int>::of(&QButtonGroup::buttonClicked),
         [=](int id){ QJsonObject memValues = memoryArr[id].toObject();
-            ui->hourNumber->display(QString("%1").arg(memValues["hour"].toInt(), 2, 10, QChar('0')));
-            ui->minNumber->display(QString("%1").arg(memValues["min"].toInt(), 2, 10, QChar('0')));
-            ui->secNumber->display(QString("%1").arg(memValues["sec"].toInt(), 2, 10, QChar('0')));
-            ui->mlNumber->display(QString("%1").arg(memValues["ml"].toInt(), 2, 10, QChar('0')));
+            ui->hourNumber->setText(QString("%1").arg(memValues["hour"].toInt(), 2, 10, QChar('0')));
+            ui->minNumber->setText(QString("%1").arg(memValues["min"].toInt(), 2, 10, QChar('0')));
+            ui->secNumber->setText(QString("%1").arg(memValues["sec"].toInt(), 2, 10, QChar('0')));
+            ui->mlNumber->setText(QString("%1").arg(memValues["ml"].toInt(), 2, 10, QChar('0')));
             m_hour = memValues["hour"].toInt();
             m_min = memValues["min"].toInt();
             m_sec = memValues["sec"].toInt();
@@ -59,10 +59,10 @@ InfectionConf::InfectionConf(QWidget *parent) :
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateTimer()));
 
-    ui->hourNumber->display(QString("%1").arg(0, 2, 10, QChar('0')));
-    ui->minNumber->display(QString("%1").arg(0, 2, 10, QChar('0')));
-    ui->secNumber->display(QString("%1").arg(0, 2, 10, QChar('0')));
-    ui->mlNumber->display(QString("%1").arg(0, 2, 10, QChar('0')));
+    ui->hourNumber->setText(QString("%1").arg(0, 2, 10, QChar('0')));
+    ui->minNumber->setText(QString("%1").arg(0, 2, 10, QChar('0')));
+    ui->secNumber->setText(QString("%1").arg(0, 2, 10, QChar('0')));
+    ui->mlNumber->setText(QString("%1").arg(0, 2, 10, QChar('0')));
 
 }
 
@@ -98,10 +98,10 @@ void InfectionConf::on_stopButton_clicked()
 
 void InfectionConf::on_setCurrentButton_clicked()
 {
-    ui->hourNumber->display(QString("%1").arg(hour, 2, 10, QChar('0')));
-    ui->minNumber->display(QString("%1").arg(min, 2, 10, QChar('0')));
-    ui->secNumber->display(QString("%1").arg(sec, 2, 10, QChar('0')));
-    ui->mlNumber->display(QString("%1").arg(ml, 2, 10, QChar('0')));
+    ui->hourNumber->setText(QString("%1").arg(hour, 2, 10, QChar('0')));
+    ui->minNumber->setText(QString("%1").arg(min, 2, 10, QChar('0')));
+    ui->secNumber->setText(QString("%1").arg(sec, 2, 10, QChar('0')));
+    ui->mlNumber->setText(QString("%1").arg(ml, 2, 10, QChar('0')));
     m_hour = hour ;
     m_min = min;
     m_sec = sec;
@@ -170,9 +170,9 @@ void InfectionConf::updateTimer()
             m_timeLeft->incTime();
             start();
         }
-        ui->hourNumber->display(QString("%1").arg(m_hour, 2, 10, QChar('0')));
-        ui->minNumber->display(QString("%1").arg(m_min, 2, 10, QChar('0')));
-        ui->secNumber->display(QString("%1").arg(m_sec, 2, 10, QChar('0')));
+        ui->hourNumber->setText(QString("%1").arg(m_hour, 2, 10, QChar('0')));
+        ui->minNumber->setText(QString("%1").arg(m_min, 2, 10, QChar('0')));
+        ui->secNumber->setText(QString("%1").arg(m_sec, 2, 10, QChar('0')));
 }
 
 void InfectionConf::setSerialport(MySerialPort *serialport)
@@ -182,7 +182,7 @@ void InfectionConf::setSerialport(MySerialPort *serialport)
 
 void InfectionConf::start()
 {
-    QString strStart = QString::number(ui->mlNumber->intValue() )+"\n";
+    QString strStart = QString::number(ui->mlNumber->text().toInt() )+"\n";
     int interval=0;
     m_serialport->open();
     if ( m_serialport->isOpen())

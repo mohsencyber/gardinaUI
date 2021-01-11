@@ -14,9 +14,9 @@ ozoneGeneralConf::ozoneGeneralConf(QWidget *parent) :
                          " border:none;border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
                          "}");
 
-    //connect( ui->secSpin,SIGNAL(valueChanged(int)),ui->secNumber,SLOT(display(int)));
-    //connect( ui->minSpin,SIGNAL(valueChanged(int)),ui->minNumber,SLOT(display(int)));
-    //connect( ui->hourSpin,SIGNAL(valueChanged(int)),ui->hourNumber,SLOT(display(int)));
+    //connect( ui->secSpin,SIGNAL(valueChanged(int)),ui->secNumber,SLOT(setText(int)));
+    //connect( ui->minSpin,SIGNAL(valueChanged(int)),ui->minNumber,SLOT(setText(int)));
+    //connect( ui->hourSpin,SIGNAL(valueChanged(int)),ui->hourNumber,SLOT(setText(int)));
     ui->secSpin->setDisabled(true);
     ui->minSpin->setDisabled(true);
     ui->hourSpin->setDisabled(true);
@@ -48,20 +48,20 @@ ozoneGeneralConf::ozoneGeneralConf(QWidget *parent) :
 
     connect(radioButtons, QOverload<int>::of(&QButtonGroup::buttonClicked),
         [=](int id){ QJsonObject memValues = memoryArr[id].toObject();
-            ui->hourNumber->display(QString("%1").arg(memValues["hour"].toInt(), 2, 10, QChar('0')));
-            ui->minNumber->display(QString("%1").arg(memValues["min"].toInt(), 2, 10, QChar('0')));
-            ui->secNumber->display(QString("%1").arg(memValues["sec"].toInt(), 2, 10, QChar('0')));
-            ui->mlNumber->display(QString("%1").arg(memValues["ml"].toInt(), 2, 10, QChar('0')));
+            ui->hourNumber->setText(QString("%1").arg(memValues["hour"].toInt(), 2, 10, QChar('0')));
+            ui->minNumber->setText(QString("%1").arg(memValues["min"].toInt(), 2, 10, QChar('0')));
+            ui->secNumber->setText(QString("%1").arg(memValues["sec"].toInt(), 2, 10, QChar('0')));
+            ui->mlNumber->setText(QString("%1").arg(memValues["ml"].toInt(), 2, 10, QChar('0')));
             m_hour = memValues["hour"].toInt();
             m_min = memValues["min"].toInt();
             m_sec = memValues["sec"].toInt();
         });
     timer = new  QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateTimer()));
-    ui->hourNumber->display(QString("%1").arg(0, 2, 10, QChar('0')));
-    ui->minNumber->display(QString("%1").arg(0, 2, 10, QChar('0')));
-    ui->secNumber->display(QString("%1").arg(0, 2, 10, QChar('0')));
-    ui->mlNumber->display(QString("%1").arg(0, 2, 10, QChar('0')));
+    ui->hourNumber->setText(QString("%1").arg(0, 2, 10, QChar('0')));
+    ui->minNumber->setText(QString("%1").arg(0, 2, 10, QChar('0')));
+    ui->secNumber->setText(QString("%1").arg(0, 2, 10, QChar('0')));
+    ui->mlNumber->setText(QString("%1").arg(0, 2, 10, QChar('0')));
 }
 
 ozoneGeneralConf::~ozoneGeneralConf()
@@ -99,7 +99,7 @@ void ozoneGeneralConf::on_hourSpin_valueChanged(int arg1)
         ui->hourSpin->setValue(23);
     }
 
-    ui->hourNumber->display(QString("%1").arg(ui->hourSpin->value(), 2, 10, QChar('0')));
+    ui->hourNumber->setText(QString("%1").arg(ui->hourSpin->value(), 2, 10, QChar('0')));
 }
 
 void ozoneGeneralConf::on_minSpin_valueChanged(int arg1)
@@ -113,7 +113,7 @@ void ozoneGeneralConf::on_minSpin_valueChanged(int arg1)
         ui->hourSpin->stepDown();
     }
 
-    ui->minNumber->display(QString("%1").arg(ui->minSpin->value(), 2, 10, QChar('0')));
+    ui->minNumber->setText(QString("%1").arg(ui->minSpin->value(), 2, 10, QChar('0')));
 }
 
 void ozoneGeneralConf::on_secSpin_valueChanged(int arg1)
@@ -127,15 +127,15 @@ void ozoneGeneralConf::on_secSpin_valueChanged(int arg1)
         ui->minSpin->stepDown();
     }
 
-    ui->secNumber->display(QString("%1").arg(ui->secSpin->value() , 2, 10, QChar('0')));
+    ui->secNumber->setText(QString("%1").arg(ui->secSpin->value() , 2, 10, QChar('0')));
 }
 
 void ozoneGeneralConf::on_setCurrentButton_clicked()
 {
-    ui->hourNumber->display(QString("%1").arg(hour, 2, 10, QChar('0')));
-    ui->minNumber->display(QString("%1").arg(min, 2, 10, QChar('0')));
-    ui->secNumber->display(QString("%1").arg(sec, 2, 10, QChar('0')));
-    ui->mlNumber->display(QString("%1").arg(ml, 2, 10, QChar('0')));
+    ui->hourNumber->setText(QString("%1").arg(hour, 2, 10, QChar('0')));
+    ui->minNumber->setText(QString("%1").arg(min, 2, 10, QChar('0')));
+    ui->secNumber->setText(QString("%1").arg(sec, 2, 10, QChar('0')));
+    ui->mlNumber->setText(QString("%1").arg(ml, 2, 10, QChar('0')));
     m_hour = hour;
     m_min = min;
     m_sec = sec;
@@ -217,9 +217,9 @@ void ozoneGeneralConf::updateTimer()
         m_timeLeft->incTime();
         start();
     }
-    ui->hourNumber->display(QString("%1").arg(m_hour, 2, 10, QChar('0')));
-    ui->minNumber->display(QString("%1").arg(m_min, 2, 10, QChar('0')));
-    ui->secNumber->display(QString("%1").arg(m_sec, 2, 10, QChar('0')));
+    ui->hourNumber->setText(QString("%1").arg(m_hour, 2, 10, QChar('0')));
+    ui->minNumber->setText(QString("%1").arg(m_min, 2, 10, QChar('0')));
+    ui->secNumber->setText(QString("%1").arg(m_sec, 2, 10, QChar('0')));
 }
 
 void ozoneGeneralConf::setSerialport(MySerialPort *serialport)
@@ -229,7 +229,7 @@ void ozoneGeneralConf::setSerialport(MySerialPort *serialport)
 
 void ozoneGeneralConf::start()
 {
-    int startval=300+ui->mlNumber->intValue();
+    int startval=300+ui->mlNumber->text().toInt();
     QString strStart=QString::number(startval)+"\n";
     int interval=0;
     m_serialport->open();

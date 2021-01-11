@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QTimer>
 #include <myserialport.h>
+#include "qtouchspinbox.h"
 
 namespace Ui {
 class FormVaccum;
@@ -45,8 +46,9 @@ private slots:
 private:
     Ui::FormVaccum *ui;
     QTimer *timer;
-    int m_Min,m_Sec , m_UserMin;
+    int m_Min=0,m_Sec=0 , m_UserMin=0;
     MySerialPort *m_serialport;
+    QTouchSpinBox *m_minTouch;
 };
 
 #endif // FORMVACCUM_H

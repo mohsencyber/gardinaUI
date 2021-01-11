@@ -14,10 +14,10 @@ OzoneGeneral::OzoneGeneral(QWidget *parent) :
                          " border:none;border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
                          "}");
 
-    //connect( ui->secSpin,SIGNAL(valueChanged(int)),ui->secNumber,SLOT(display(int)));
-    //connect( ui->minSpin,SIGNAL(valueChanged(int)),ui->minNumber,SLOT(display(int)));
-    //connect( ui->hourSpin,SIGNAL(valueChanged(int)),ui->hourNumber,SLOT(display(int)));
-    //connect( ui->mlSpin,SIGNAL(valueChanged(int)),ui->mlNumber,SLOT(display(int)));
+    //connect( ui->secSpin,SIGNAL(valueChanged(int)),ui->secNumber,SLOT(setText(int)));
+    //connect( ui->minSpin,SIGNAL(valueChanged(int)),ui->minNumber,SLOT(setText(int)));
+    //connect( ui->hourSpin,SIGNAL(valueChanged(int)),ui->hourNumber,SLOT(setText(int)));
+    //connect( ui->mlSpin,SIGNAL(valueChanged(int)),ui->mlNumber,SLOT(setText(int)));
 
     ui->hourSpin->setValue(0);
     ui->minSpin->setValue(0);
@@ -26,34 +26,73 @@ OzoneGeneral::OzoneGeneral(QWidget *parent) :
 
     ui->minSpin->setVisible(false);
 
-    connect(ui->mintextEdit, &QTouchSpinBox::MovedUp , ui->minSpin , &QSpinBox::stepUp );
-    connect(ui->mintextEdit, &QTouchSpinBox::MovedDown , ui->minSpin , &QSpinBox::stepDown );
+    m_minTouch = new QTouchSpinBox(ui->frame);
+    m_minTouch->setStep(1);
+    m_minTouch->setMinMax(0,59);
+    m_minTouch->setCurrent(0);
+    m_minTouch->setNumbersShow(3);
+    m_minTouch->setGeometry(145,158,70,125);
+    m_minTouch->setStyleSheet("background-color: rgb(0, 0, 255,20%);"
+                              "font: 75 12pt \"Waree\";"
+                              "qproperty-alignment: AlignCenter;");
+
+    connect(m_minTouch, &QTouchSpinBox::MovedUp , ui->minSpin , &QSpinBox::stepUp );
+    connect(m_minTouch, &QTouchSpinBox::MovedDown , ui->minSpin , &QSpinBox::stepDown );
 
     ui->hourSpin->setVisible(false);
 
-    connect(ui->hourtextEdit, &QTouchSpinBox::MovedUp , ui->hourSpin , &QSpinBox::stepUp );
-    connect(ui->hourtextEdit, &QTouchSpinBox::MovedDown , ui->hourSpin , &QSpinBox::stepDown );
+    m_hourTouch = new QTouchSpinBox(ui->frame);
+    m_hourTouch->setStep(1);
+    m_hourTouch->setMinMax(0,12);
+    m_hourTouch->setCurrent(0);
+    m_hourTouch->setNumbersShow(3);
+    m_hourTouch->setGeometry(30,158,70,125);
+    m_hourTouch->setStyleSheet("background-color: rgb(0, 0, 255,20%);"
+                              "font: 75 12pt \"Waree\";"
+                              "qproperty-alignment: AlignCenter;");
+
+    connect(m_hourTouch, &QTouchSpinBox::MovedUp , ui->hourSpin , &QSpinBox::stepUp );
+    connect(m_hourTouch, &QTouchSpinBox::MovedDown , ui->hourSpin , &QSpinBox::stepDown );
 
     ui->secSpin->setVisible(false);
 
-    connect(ui->sectextEdit, &QTouchSpinBox::MovedUp , ui->secSpin , &QSpinBox::stepUp );
-    connect(ui->sectextEdit, &QTouchSpinBox::MovedDown , ui->secSpin , &QSpinBox::stepDown );
+    m_secTouch = new QTouchSpinBox(ui->frame);
+    m_secTouch->setStep(1);
+    m_secTouch->setMinMax(0,59);
+    m_secTouch->setCurrent(0);
+    m_secTouch->setNumbersShow(3);
+    m_secTouch->setGeometry(250,158,70,125);
+    m_secTouch->setStyleSheet("background-color: rgb(0, 0, 255,20%);"
+                              "font: 75 12pt \"Waree\";"
+                              "qproperty-alignment: AlignCenter;");
+    connect(m_secTouch, &QTouchSpinBox::MovedUp , ui->secSpin , &QSpinBox::stepUp );
+    connect(m_secTouch, &QTouchSpinBox::MovedDown , ui->secSpin , &QSpinBox::stepDown );
 
     ui->mlSpin->setVisible(false);
 
-    connect(ui->mltextEdit, &QTouchSpinBox::MovedUp , ui->mlSpin , &QSpinBox::stepUp );
-    connect(ui->mltextEdit, &QTouchSpinBox::MovedDown , ui->mlSpin , &QSpinBox::stepDown );
+    m_mlTouch = new QTouchSpinBox(ui->frame);
+    m_mlTouch->setStep(1);
+    m_mlTouch->setMinMax(1,80);
+    m_mlTouch->setCurrent(1);
+    m_mlTouch->setNumbersShow(3);
+    m_mlTouch->setGeometry(390,158,70,125);
+    m_mlTouch->setStyleSheet("background-color: rgb(0, 0, 255,20%);"
+                              "font: 75 12pt \"Waree\";"
+                              "qproperty-alignment: AlignCenter;");
+
+    connect(m_mlTouch, &QTouchSpinBox::MovedUp , ui->mlSpin , &QSpinBox::stepUp );
+    connect(m_mlTouch, &QTouchSpinBox::MovedDown , ui->mlSpin , &QSpinBox::stepDown );
 
 
-    ui->hourtextEdit->setAttribute(Qt::WA_TranslucentBackground);
-    ui->mintextEdit->setAttribute(Qt::WA_TranslucentBackground);
-    ui->sectextEdit->setAttribute(Qt::WA_TranslucentBackground);
-    ui->mltextEdit->setAttribute(Qt::WA_TranslucentBackground);
+    m_hourTouch->setAttribute(Qt::WA_TranslucentBackground);
+    m_minTouch->setAttribute(Qt::WA_TranslucentBackground);
+    m_secTouch->setAttribute(Qt::WA_TranslucentBackground);
+    m_mlTouch->setAttribute(Qt::WA_TranslucentBackground);
 
-    ui->hourNumber->display(QString("%1").arg(0, 2, 10, QChar('0')));
-    ui->minNumber->display(QString("%1").arg(0, 2, 10, QChar('0')));
-    ui->secNumber->display(QString("%1").arg(0, 2, 10, QChar('0')));
-    ui->mlNumber->display(QString("%1").arg(1, 2, 10, QChar('0')));
+    ui->hourNumber->setText(QString("%1").arg(0, 2, 10, QChar('0')));
+    ui->minNumber->setText(QString("%1").arg(0, 2, 10, QChar('0')));
+    ui->secNumber->setText(QString("%1").arg(0, 2, 10, QChar('0')));
+    ui->mlNumber->setText(QString("%1").arg(1, 2, 10, QChar('0')));
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateTimer()));
@@ -89,30 +128,15 @@ void OzoneGeneral::on_secSpin_valueChanged(int arg1)
     bi=i-1;ai=i+1;
     if (bi==-1) bi = 59;
     if (ai==60) ai = 1;
-    QFont font(ui->sectextEdit->font());
-    font.setBold(true);
-    ui->sectextEdit->setTextColor(QColor::fromRgb(0,0,0,200));
-    ui->sectextEdit->setText(QString::number(bi));
-    ui->sectextEdit->setAlignment(Qt::AlignCenter);
-    ui->sectextEdit->setTextColor(Qt::lightGray);
-    ui->sectextEdit->append("------");
-    ui->sectextEdit->setCurrentFont(font);
-    ui->sectextEdit->setAlignment(Qt::AlignCenter);
-    ui->sectextEdit->setTextColor(Qt::black);
-    ui->sectextEdit->append(QString::number(i));
-    font.setBold(false);
-    ui->sectextEdit->setCurrentFont(font);
-    ui->sectextEdit->setAlignment(Qt::AlignCenter);
-    ui->sectextEdit->setTextColor(Qt::lightGray);
-    ui->sectextEdit->append("------");
-    ui->sectextEdit->setAlignment(Qt::AlignCenter);
-    ui->sectextEdit->setTextColor(QColor::fromRgb(0,0,0,200));
-    ui->sectextEdit->append(QString::number(ai));
-    ui->sectextEdit->setAlignment(Qt::AlignCenter);
-    ui->secNumber->display(QString("%1").arg(i, 2, 10, QChar('0')));
+    ui->secNumber->setText(QString("%1").arg(i, 2, 10, QChar('0')));
 
+    if ( m_secTouch )
+    {
+        m_secTouch->setCurrent(i);
+        m_secTouch->refresh();
+    }
 
-    if ( ui->hourNumber->intValue()+ui->minNumber->intValue()+ui->secNumber->intValue() > 0 && !(timer->isActive()) )
+    if ( ui->hourNumber->text().toInt()+ui->minNumber->text().toInt()+ui->secNumber->text().toInt() > 0 && !(timer->isActive()) )
         ui->startButton->setEnabled(true);
     else
         ui->startButton->setEnabled(false);
@@ -141,28 +165,14 @@ void OzoneGeneral::on_minSpin_valueChanged(int arg1)
     bi=i-1;ai=i+1;
     if (bi==-1) bi = 59;
     if (ai==60) ai = 1;
-    QFont font(ui->mintextEdit->font());
-    font.setBold(true);
-    ui->mintextEdit->setTextColor(QColor::fromRgb(0,0,0,200));
-    ui->mintextEdit->setText(QString::number(bi));
-    ui->mintextEdit->setAlignment(Qt::AlignCenter);
-    ui->mintextEdit->setTextColor(Qt::lightGray);
-    ui->mintextEdit->append("------");
-    ui->mintextEdit->setCurrentFont(font);
-    ui->mintextEdit->setAlignment(Qt::AlignCenter);
-    ui->mintextEdit->setTextColor(Qt::black);
-    ui->mintextEdit->append(QString::number(i));
-    font.setBold(false);
-    ui->mintextEdit->setCurrentFont(font);
-    ui->mintextEdit->setAlignment(Qt::AlignCenter);
-    ui->mintextEdit->setTextColor(Qt::lightGray);
-    ui->mintextEdit->append("------");
-    ui->mintextEdit->setAlignment(Qt::AlignCenter);
-    ui->mintextEdit->setTextColor(QColor::fromRgb(0,0,0,200));
-    ui->mintextEdit->append(QString::number(ai));
-    ui->mintextEdit->setAlignment(Qt::AlignCenter);
-    ui->minNumber->display(QString("%1").arg(i, 2, 10, QChar('0')));
-    if ( ui->hourNumber->intValue()+ui->minNumber->intValue()+ui->secNumber->intValue() > 0 && !(timer->isActive())  )
+    ui->minNumber->setText(QString("%1").arg(i, 2, 10, QChar('0')));
+    if ( m_minTouch )
+    {
+        m_minTouch->setCurrent(i);
+        m_minTouch->refresh();
+    }
+
+    if ( ui->hourNumber->text().toInt()+ui->minNumber->text().toInt()+ui->secNumber->text().toInt() > 0 && !(timer->isActive())  )
         ui->startButton->setEnabled(true);
     else
         ui->startButton->setEnabled(false);
@@ -182,28 +192,14 @@ void OzoneGeneral::on_hourSpin_valueChanged(int arg1)
     bi=i-1;ai=i+1;
     if (bi==-1) bi = 12;
     if (ai==13) ai = 0;
-    QFont font(ui->hourtextEdit->font());
-    font.setBold(true);
-    ui->hourtextEdit->setTextColor(QColor::fromRgb(0,0,0,200));
-    ui->hourtextEdit->setText(QString::number(bi));
-    ui->hourtextEdit->setAlignment(Qt::AlignCenter);
-    ui->hourtextEdit->setTextColor(Qt::lightGray);
-    ui->hourtextEdit->append("------");
-    ui->hourtextEdit->setCurrentFont(font);
-    ui->hourtextEdit->setAlignment(Qt::AlignCenter);
-    ui->hourtextEdit->setTextColor(Qt::black);
-    ui->hourtextEdit->append(QString::number(i));
-    font.setBold(false);
-    ui->hourtextEdit->setCurrentFont(font);
-    ui->hourtextEdit->setAlignment(Qt::AlignCenter);
-    ui->hourtextEdit->setTextColor(Qt::lightGray);
-    ui->hourtextEdit->append("------");
-    ui->hourtextEdit->setAlignment(Qt::AlignCenter);
-    ui->hourtextEdit->setTextColor(QColor::fromRgb(0,0,0,200));
-    ui->hourtextEdit->append(QString::number(ai));
-    ui->hourtextEdit->setAlignment(Qt::AlignCenter);
-    ui->hourNumber->display(QString("%1").arg(i, 2, 10, QChar('0')));
-    if ( ui->hourNumber->intValue()+ui->minNumber->intValue()+ui->secNumber->intValue() > 0 && !(timer->isActive())  )
+    ui->hourNumber->setText(QString("%1").arg(i, 2, 10, QChar('0')));
+    if ( m_hourTouch )
+    {
+        m_hourTouch->setCurrent(i);
+        m_hourTouch->refresh();
+    }
+
+    if ( ui->hourNumber->text().toInt()+ui->minNumber->text().toInt()+ui->secNumber->text().toInt() > 0 && !(timer->isActive())  )
         ui->startButton->setEnabled(true);
     else
         ui->startButton->setEnabled(false);
@@ -232,7 +228,8 @@ void OzoneGeneral::on_startButton_clicked()
 
 void OzoneGeneral::on_stopButton_clicked()
 {
-    ui->startButton->setDisabled(false);
+    if ( m_userMin+m_userSec+m_userHour )
+        ui->startButton->setDisabled(false);
     ui->pushButton->setDisabled(false);
     ui->touchButton->setDisabled(false);
     stop();
@@ -265,7 +262,7 @@ void OzoneGeneral::updateTimer()
            ui->minSpin->setValue(m_userMin);
            ui->secSpin->setValue(m_userSec);
        }else{
-           int sendTouch = 300+ui->mlNumber->intValue(),interval=0;
+           int sendTouch = 300+ui->mlNumber->text().toInt(),interval=0;
            QString strTouch = QString::number(sendTouch)+"\n";
            if ( m_serialport->isOpen())
                m_serialport->write(strTouch.toUtf8(),interval);
@@ -273,7 +270,7 @@ void OzoneGeneral::updateTimer()
            m_timeLeft->incTime();
        }
     }else{
-        int sendTouch = 300+ui->mlNumber->intValue(),interval=0;
+        int sendTouch = 300+ui->mlNumber->text().toInt(),interval=0;
         QString strTouch = QString::number(sendTouch)+"\n";
         if ( m_serialport->isOpen())
             m_serialport->write(strTouch.toUtf8(),interval);
@@ -332,7 +329,7 @@ void OzoneGeneral::on_touchButton_pressed()
         ui->hourSpin->setValue(0);
         ui->minSpin->setValue(0);
         ui->secSpin->setValue(0);
-        sendTouch = 300+ui->mlNumber->intValue();
+        sendTouch = 300+ui->mlNumber->text().toInt();
         QString strTouch = QString::number(sendTouch)+"\n";
         if ( m_serialport->isOpen())
             m_serialport->write(strTouch.toUtf8(),interval);
@@ -368,25 +365,11 @@ void OzoneGeneral::on_mlSpin_valueChanged(int arg1)
     bi=i-1;ai=i+1;
     if (bi==0) bi = 80;
     if (ai==81) ai = 1;
-    QFont font(ui->mltextEdit->font());
-    font.setBold(true);
-    ui->mltextEdit->setTextColor(QColor::fromRgb(0,0,0,150));
-    ui->mltextEdit->setText(QString::number(bi));
-    ui->mltextEdit->setAlignment(Qt::AlignCenter);
-    ui->mltextEdit->setTextColor(Qt::lightGray);
-    ui->mltextEdit->append("------");
-    ui->mltextEdit->setCurrentFont(font);
-    ui->mltextEdit->setAlignment(Qt::AlignCenter);
-    ui->mltextEdit->setTextColor(Qt::black);
-    ui->mltextEdit->append(QString::number(i));
-    font.setBold(false);
-    ui->mltextEdit->setCurrentFont(font);
-    ui->mltextEdit->setAlignment(Qt::AlignCenter);
-    ui->mltextEdit->setTextColor(Qt::lightGray);
-    ui->mltextEdit->append("------");
-    ui->mltextEdit->setAlignment(Qt::AlignCenter);
-    ui->mltextEdit->setTextColor(QColor::fromRgb(0,0,0,150));
-    ui->mltextEdit->append(QString::number(ai));
-    ui->mltextEdit->setAlignment(Qt::AlignCenter);
-    ui->mlNumber->display(QString("%1").arg(i, 2, 10, QChar('0')));
+    ui->mlNumber->setText(QString("%1").arg(i, 2, 10, QChar('0')));
+    if ( m_mlTouch )
+    {
+        m_mlTouch->setCurrent(i);
+        m_mlTouch->refresh();
+    }
+
 }

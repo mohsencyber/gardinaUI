@@ -3,13 +3,21 @@
 void SoftKeyBoard::showSpcKeys(QButtonGroup *keyButtons)
 {
    int lens = keyButtons->buttons().length();
-   for (int i=0 ; i< lens ; i++)
+   for (int i=0 ; i< 6 ; i++)
    {
-       if ( i==6 && m_shiftKeyPressed )
-           keyButtons->button(i)->setText("&&");
-       else
-           keyButtons->button(i)->setText(currentSpcKeys.data()[i]);
+       keyButtons->button(i)->setText(currentSpcKeys.data()[i]);
    }
+   if ( m_shiftKeyPressed )
+       keyButtons->button(6)->setText("&&");
+   else
+       keyButtons->button(6)->setText(currentSpcKeys.data()[6]);
+
+   for (int i=7 ; i< lens ; i++)
+   {
+       keyButtons->button(i)->setText(currentSpcKeys.data()[i]);
+   }
+
+
 }
 
 void SoftKeyBoard::shiftPressed()

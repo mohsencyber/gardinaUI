@@ -15,16 +15,25 @@ FormVaccum::FormVaccum(QWidget *parent) :
     ui->minSpin->setValue(0);
     ui->minSpin->setVisible(false);
 
-    connect(ui->textEdit, &QTouchSpinBox::MovedUp , ui->minSpin , &QSpinBox::stepUp );
-    connect(ui->textEdit, &QTouchSpinBox::MovedDown , ui->minSpin , &QSpinBox::stepDown );
+    m_minTouch = new QTouchSpinBox(ui->frame);
+    m_minTouch->setStep(1);
+    m_minTouch->setMinMax(0,60);
+    m_minTouch->setCurrent(0);
+    m_minTouch->setNumbersShow(3);
+    m_minTouch->setGeometry(107,172,70,125);
+    m_minTouch->setStyleSheet("background-color: rgb(0, 0, 255,20%);"
+                              "font: 75 12pt \"Waree\";"
+                              "qproperty-alignment: AlignCenter;");
+    connect(m_minTouch, &QTouchSpinBox::MovedUp , ui->minSpin , &QSpinBox::stepUp );
+    connect(m_minTouch, &QTouchSpinBox::MovedDown , ui->minSpin , &QSpinBox::stepDown );
 
 
     ui->minSpin->setAcceptDrops(true);
 
     ui->minSpin->setAttribute(Qt::WA_AcceptTouchEvents);
-    ui->textEdit->setAttribute(Qt::WA_TranslucentBackground);
-    ui->minNumber->display(QString("%1").arg(0, 2, 10, QChar('0')));
-    ui->secNumber->display(QString("%1").arg(0, 2, 10, QChar('0')));
+    m_minTouch->setAttribute(Qt::WA_TranslucentBackground);
+    ui->minNumber->setText(QString("%1").arg(0, 2, 10, QChar('0')));
+    ui->secNumber->setText(QString("%1").arg(0, 2, 10, QChar('0')));
     timer = new  QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateTimer()));
     ui->startButton->setEnabled(false);
@@ -33,6 +42,7 @@ FormVaccum::FormVaccum(QWidget *parent) :
 
 FormVaccum::~FormVaccum()
 {
+    delete m_minTouch;
     delete ui;
 }
 
@@ -82,30 +92,9 @@ void FormVaccum::on_minSpin_valueChanged(int arg1)
     bi=i-1;ai=i+1;
     if (bi==-1) bi = 60;
     if (ai==61) ai = 0;
-    QFont font(ui->textEdit->font());
-    font.setBold(true);
-    QString ViewStr = QString::number(bi);
-    ui->textEdit->setTextColor(QColor::fromRgb(0,0,0,200));
-    ui->textEdit->setText(ViewStr);
-    ui->textEdit->setTextColor(Qt::lightGray);
-    ui->textEdit->setAlignment(Qt::AlignCenter);
-    ui->textEdit->append("------");
-    ui->textEdit->setTextColor(Qt::black);
-    ui->textEdit->setCurrentFont(font);
-    ui->textEdit->setAlignment(Qt::AlignCenter);
-    ui->textEdit->append(QString::number(i));
-    font.setBold(false);
-    ui->textEdit->setCurrentFont(font);
-    ui->textEdit->setAlignment(Qt::AlignCenter);
-    ui->textEdit->setTextColor(Qt::lightGray);
-    ui->textEdit->append("------");
-    ui->textEdit->setAlignment(Qt::AlignCenter);
-    ui->textEdit->setTextColor(QColor::fromRgb(0,0,0,200));
-    ui->textEdit->append(QString::number(ai));
-    ui->textEdit->setAlignment(Qt::AlignCenter);
-    ui->minNumber->display(QString("%1").arg(i, 2, 10, QChar('0')));
+    ui->minNumber->setText(QString("%1").arg(i, 2, 10, QChar('0')));
 
-    if ( ui->minNumber->intValue()+ui->secNumber->intValue() > 0  )
+    if ( ui->minNumber->text().toInt()+ui->secNumber->text().toInt() > 0  )
         ui->startButton->setEnabled(true);
     else
         ui->startButton->setEnabled(false);
@@ -120,19 +109,22 @@ void FormVaccum::on_startButton_clicked()
     start();
     timer->setInterval(1000);
     timer->start();
-    m_Min = ui->minNumber->intValue();
-    m_Sec = ui->secNumber->intValue();
+    m_Min = ui->minNumber->text().toInt();
+    m_Sec = ui->secNumber->text().toInt();
     m_UserMin = ui->minSpin->value();
 }
 
 void FormVaccum::on_stopButton_clicked()
 {
-    ui->startButton->setEnabled(true);
+    if ( m_UserMin )
+        ui->startButton->setEnabled(true);
     ui->pushButton->setEnabled(true);
     stop();
     timer->stop();
-    ui->minNumber->display(QString("%1").arg(m_UserMin, 2, 10, QChar('0')));
-    ui->secNumber->display(QString("%1").arg(0, 2, 10, QChar('0')));
+    ui->minNumber->setText(QString("%1").arg(m_UserMin, 2, 10, QChar('0')));
+    m_minTouch->setCurrent(m_UserMin);
+    m_minTouch->refresh();
+    ui->secNumber->setText(QString("%1").arg(0, 2, 10, QChar('0')));
     ui->minSpin->setValue(m_UserMin);
 }
 
@@ -147,15 +139,19 @@ void FormVaccum::updateTimer()
     }
     if ( m_Min > -1 )
     {
-        ui->secNumber->display(QString("%1").arg(m_Sec, 2, 10, QChar('0')));
-        ui->minNumber->display(QString("%1").arg(m_Min, 2, 10, QChar('0')));
+        ui->secNumber->setText(QString("%1").arg(m_Sec, 2, 10, QChar('0')));
+        ui->minNumber->setText(QString("%1").arg(m_Min, 2, 10, QChar('0')));
+        m_minTouch->setCurrent(m_Min);
+        m_minTouch->refresh();
     }else{
         //ui->startButton->setEnabled(true);
         ui->pushButton->setEnabled(true);
         end();
         timer->stop();
         ui->minSpin->setValue(m_UserMin);
-        ui->minNumber->display(QString("%1").arg(m_UserMin, 2, 10, QChar('0')));
+        ui->minNumber->setText(QString("%1").arg(m_UserMin, 2, 10, QChar('0')));
+        m_minTouch->setCurrent(m_UserMin);
+        m_minTouch->refresh();
     }
 }
 

@@ -5,6 +5,7 @@
 #include <QTimer>
 #include "myserialport.h"
 #include "timeleft.h"
+#include "qtouchspinbox.h"
 
 namespace Ui {
 class OzoneGeneral;
@@ -57,7 +58,8 @@ private:
     QTimer *timer;
     MySerialPort *m_serialport;
     bool touch=false;
-    int m_userMin,m_userSec,m_userHour;
+    int m_userMin=0,m_userSec=0,m_userHour=0;
+    QTouchSpinBox *m_minTouch=nullptr , *m_hourTouch=nullptr , *m_secTouch=nullptr , *m_mlTouch=nullptr;
 };
 
 #endif // OZONEGENERAL_H

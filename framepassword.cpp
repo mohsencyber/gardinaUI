@@ -15,8 +15,16 @@ FramePassword::FramePassword(QWidget *parent) :
     m_passWord->setEchoMode(QLineEdit::PasswordEchoOnEdit);
 
     QSettings setting("/home/pi/myapp/gardinapw.cfg",QSettings::IniFormat);
+    QSettings settingtik("/home/pi/myapp/gardina.cfg",QSettings::IniFormat);
     QString l_username = setting.value("username").toString();
     QString l_password = setting.value("password").toString();
+    if (settingtik.value("secure","no").toString().toUpper()=="YES" )
+    {
+        ui->authenticate->setCheckState(Qt::CheckState::Checked);
+        m_userName->setText(l_username);
+        m_passWord->setText("********");
+    }
+
     m_username = l_username;
     m_password = l_password;
 
