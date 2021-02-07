@@ -11,7 +11,7 @@ FrameTLLogin::FrameTLLogin(QWidget *parent) :
     //qputenv("QT_IM_MODULE",QByteArray("qtvirtualkeyboard"));
     //qputenv("QT_VIRTUALKEYBOARD_STYLE", QByteArray("retro"));
     //setAttribute(Qt::WA_InputMethodEnabled);
-    this->setStyleSheet(" #FrameTLLogin { border:none; border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
+    this->setStyleSheet(" #FrameTLLogin {  border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
     //ui->lineEdit->setAttribute(Qt::WA_InputMethodEnabled);
     mylineedit = new myLineEdit(this);
     mylineedit->setGeometry(400,100,300,28);

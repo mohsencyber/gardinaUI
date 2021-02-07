@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>500</height>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>681</x>
-     <y>437</y>
+     <y>434</y>
      <width>85</width>
      <height>37</height>
     </rect>
@@ -37,7 +37,7 @@ border-image: url(:/button_back.png);</string>
    <property name="geometry">
     <rect>
      <x>460</x>
-     <y>443</y>
+     <y>440</y>
      <width>96</width>
      <height>31</height>
     </rect>
@@ -1020,7 +1020,7 @@ border-image: url(:/button_back.png);</string>
    <property name="geometry">
     <rect>
      <x>570</x>
-     <y>443</y>
+     <y>440</y>
      <width>96</width>
      <height>31</height>
     </rect>

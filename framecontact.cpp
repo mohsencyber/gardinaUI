@@ -6,7 +6,7 @@ FrameContact::FrameContact(QWidget *parent) :
     ui(new Ui::FrameContact)
 {
     ui->setupUi(this);
-    this->setStyleSheet(" #FrameContact { border:none; border-image: url(:/contact_bg.png) 0 0 0 0 stretch stretch; }");
+    this->setStyleSheet(" #FrameContact { border-image: url(:/contact_bg.png) 0 0 0 0 stretch stretch; }");
 }
 
 FrameContact::~FrameContact()

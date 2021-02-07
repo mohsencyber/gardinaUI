@@ -9,7 +9,7 @@ OzoneCT::OzoneCT(QWidget *parent) :
     ui->setupUi(this);
     m_timeLeft = new TimeLeft();
     this->setStyleSheet( " #OzoneCT { "
-                         " border:none;border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
+                         " border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
                          "}");
     ui->pauseButton->setDisabled(true);
     isPause = false;
@@ -94,8 +94,7 @@ void OzoneCT::on_startButton_clicked()
     timeToSeconds();
     ui->label_Min->setText(QString::number(MinVal).rightJustified(2,'0'));
     ui->label_Sec->setText(QString::number(SecVal).rightJustified(2,'0'));
-    if ( MinVal > 0 &&
-         SecVal > 0 ){
+    if ( MinVal + SecVal > 0 ){
         ui->startButton->setDisabled(true);
         ui->pushButton->setDisabled(true);
         ui->pauseButton->setDisabled(false);

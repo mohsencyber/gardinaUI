@@ -10,7 +10,7 @@ FormVaccum::FormVaccum(QWidget *parent) :
     ui(new Ui::FormVaccum)
 {
     ui->setupUi(this);
-    this->setStyleSheet(" #FormVaccum { border:none; border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
+    this->setStyleSheet(" #FormVaccum {  border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
 
     ui->minSpin->setValue(0);
     ui->minSpin->setVisible(false);
@@ -126,6 +126,7 @@ void FormVaccum::on_stopButton_clicked()
     m_minTouch->refresh();
     ui->secNumber->setText(QString("%1").arg(0, 2, 10, QChar('0')));
     ui->minSpin->setValue(m_UserMin);
+
 }
 
 void FormVaccum::updateTimer()
@@ -150,6 +151,7 @@ void FormVaccum::updateTimer()
         timer->stop();
         ui->minSpin->setValue(m_UserMin);
         ui->minNumber->setText(QString("%1").arg(m_UserMin, 2, 10, QChar('0')));
+        ui->startButton->setEnabled(true);
         m_minTouch->setCurrent(m_UserMin);
         m_minTouch->refresh();
     }

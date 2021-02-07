@@ -9,7 +9,7 @@ FrameOzone::FrameOzone(QWidget *parent) :
     ui(new Ui::FrameOzone)
 {
     ui->setupUi(this);
-    this->setStyleSheet(" #FrameOzone { border:none; border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
+    this->setStyleSheet(" #FrameOzone {  border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
 }
 
 FrameOzone::~FrameOzone()

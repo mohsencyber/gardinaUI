@@ -11,7 +11,7 @@ FormOxygen::FormOxygen(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->setStyleSheet( " #FormOxygen { border:none; border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;}");
+    this->setStyleSheet( " #FormOxygen {  border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;}");
     ui->minSpin->setValue(0);
     ui->minSpin->setVisible(false);
     //ui->textEdit->setVisible(false);
@@ -174,6 +174,7 @@ void FormOxygen::updateTimer()
         timer->stop();
         ui->minSpin->setValue(m_userMin);
         ui->minNumber->setText(QString::number(m_userMin).rightJustified(2,'0'));
+        ui->startButton->setEnabled(true);
         m_minTouch->setCurrent(m_userMin);
         m_minTouch->refresh();
     }

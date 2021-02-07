@@ -11,7 +11,7 @@ OzoneGeneral::OzoneGeneral(QWidget *parent) :
     ui->setupUi(this);
     m_timeLeft = new TimeLeft();
     this->setStyleSheet( " #OzoneGeneral { "
-                         " border:none;border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
+                         " border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
                          "}");
 
     //connect( ui->secSpin,SIGNAL(valueChanged(int)),ui->secNumber,SLOT(setText(int)));

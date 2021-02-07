@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>500</height>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -511,7 +511,7 @@ background-color: rgba(0,20,60,0.5);
     </property>
     <property name="font">
      <font>
-      <pointsize>23</pointsize>
+      <pointsize>22</pointsize>
       <weight>50</weight>
       <bold>false</bold>
      </font>

@@ -10,7 +10,7 @@ Infection::Infection(QWidget *parent) :
     ui->setupUi(this);
     m_timeLeft = new TimeLeft();
     this->setStyleSheet( " #Infection { "
-                         " border:none;border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
+                         " border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch;"
                          "}");
 
     //connect( ui->mlSpin,SIGNAL(valueChanged(int)),ui->mlNumber,SLOT(setText(int)));

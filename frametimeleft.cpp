@@ -17,7 +17,7 @@ FrameTimeLeft::FrameTimeLeft(QWidget *parent) :
     ui->setupUi(this);
     m_timeLeft = new TimeLeft();
     m_passIsOk = false;
-    this->setStyleSheet(" #FrameTimeLeft { border:none; border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
+    this->setStyleSheet(" #FrameTimeLeft {  border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
     //DialogTLLogin ttlogin(this);
 
     m_comment = new myLineEdit(this);

@@ -6,7 +6,7 @@ FrameAbout::FrameAbout(QWidget *parent) :
     ui(new Ui::FrameAbout)
 {
     ui->setupUi(this);
-    this->setStyleSheet(" #FrameAbout { border:none; border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
+    this->setStyleSheet(" #FrameAbout { border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
     //ui->textBrowser->setAttribute(Qt::WA_TranslucentBackground);
 }
 

@@ -6,7 +6,7 @@ FramePassword::FramePassword(QWidget *parent) :
     ui(new Ui::FramePassword)
 {
     ui->setupUi(this);
-    this->setStyleSheet(" #FramePassword { border:none; border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
+    this->setStyleSheet(" #FramePassword {  border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
     m_userName = new myLineEdit(this);
     m_userName->setGeometry(145,100,615,30);
 

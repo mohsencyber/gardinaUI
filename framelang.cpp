@@ -7,7 +7,7 @@ FrameLang::FrameLang(QWidget *parent) :
     ui(new Ui::FrameLang)
 {
     ui->setupUi(this);
-    this->setStyleSheet(" #FrameLang { border:none; border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
+    this->setStyleSheet(" #FrameLang { border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
 
     radioButtons = new QButtonGroup();
     radioButtons->addButton(ui->engButton ,0);

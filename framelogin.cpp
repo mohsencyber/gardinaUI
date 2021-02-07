@@ -9,7 +9,7 @@ FrameLogin::FrameLogin(QWidget *parent) :
     ui(new Ui::FrameLogin)
 {
     ui->setupUi(this);
-    this->setStyleSheet(" #FrameLogin { border:none; border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
+    this->setStyleSheet(" #FrameLogin {  border-image: url(:/gardina_main_bg.png) 0 0 0 0 stretch stretch; }");
     //ui->password->setEchoMode(QLineEdit::Password);
     ui->message->setVisible(false);
     m_username = new myLineEdit(this);
